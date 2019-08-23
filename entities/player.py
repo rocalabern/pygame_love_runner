@@ -77,13 +77,12 @@ class Player(Entity):
 
         for p in platforms:
 
-            if isinstance(self, Player) and isinstance(p, GoalBlock) and pygame.sprite.collide_rect(self, p):
-                self.on_goal = True
-                # offset = 0.1
-                # self.rect.top += offset
-                # if pygame.sprite.collide_rect(self, p):
-                #     self.on_goal = True
-                # self.rect.top -= offset
+            if isinstance(self, Player) and isinstance(p, GoalBlock):
+                offset = 1
+                self.rect.top += offset
+                if pygame.sprite.collide_rect(self, p):
+                    self.on_goal = True
+                self.rect.top -= offset
 
             if pygame.sprite.collide_rect(self, p) and p is not self:
 
