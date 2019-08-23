@@ -15,7 +15,7 @@ from levels import Level
 def get_background_tile(tile_x, tile_y):
     bg = Surface((tile_x, tile_y))
     bg.convert()
-    bg.fill(Color("#000000"))
+    bg.fill(Color(constants.COLOR_BCKGRND_BOLD))
     bg.fill(Color(constants.COLOR_BCKGRND), Rect(2, 2, tile_x-2, tile_y-2))
     return bg
 
@@ -30,8 +30,6 @@ def load_level(level):
     constants.TILE_Y_NUM = level.TILE_Y_NUM
 
     entities = pygame.sprite.Group()
-    player_p1 = Player(constants.TILE_X, constants.TILE_Y*2.5, "#4da6ff")
-    player_p2 = Player(constants.TILE_X*2, constants.TILE_Y*2.5, "#ff80bf")
     platforms = []
 
     # build the level
@@ -54,15 +52,17 @@ def load_level(level):
                 e = GoalBlock(x, y)
                 platforms.append(e)
                 entities.add(e)
+            if level_block == "Y":
+                player_p1 = Player(x, y, constants.COLOR_PLAYER_P1)
+            if level_block == "X":
+                player_p2 = Player(x, y, constants.COLOR_PLAYER_P2)
             x += constants.TILE_X
         y += constants.TILE_Y
         x = 0
-
+    platforms.append(player_p1)
     entities.add(player_p1)
     entities.add(player_p2)
-    platforms.append(player_p1)
     platforms.append(player_p2)
-
     return (entities, platforms, player_p1, player_p2)
 
 def main():

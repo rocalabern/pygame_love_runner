@@ -1,6 +1,6 @@
 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
 P                                       P
-P                                       P
+P  X        Y                           P
 P                             EPPPPPPGGGP
 P                             E         P
 PPPPPPPGGGPPPP                E         P

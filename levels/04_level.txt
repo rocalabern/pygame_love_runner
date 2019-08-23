@@ -26,7 +26,7 @@ P                                                                               
 P                                                                                P
 P                                                                                P
 P                                                                                P
-P                                                                                P
+P                                                                   Y            P
 P                                                                                P
 P                                                                                P
 P      EEPPPPPPPPPPE                                                             P
@@ -40,5 +40,5 @@ P      EE   EE          EE          EE       EE    EE   PP         EE           
 P      EE   EE          EE          EE       EE    EE    PP        EE            P
 P      EE   EEBBBBBBBBBBEE          EEBBGGGBBEE    EE     PP       EE            P
 P      EE                                          EE       PPPPPPPEE            P
-P      EE                                                                        P
+P   X  EE                                                                        P
 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
