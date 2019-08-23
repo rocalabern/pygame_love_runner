@@ -14,6 +14,7 @@ class Player(Entity):
     color = None
     collides = True
     has_grip = False
+    on_goal = False
 
     def __init__(self, x, y, color):
         Entity.__init__(self)
@@ -67,10 +68,23 @@ class Player(Entity):
         self.collide(0, self.yvel, up, down, left, right, platforms)
 
     def collide(self, xvel, yvel, up, down, left, right, platforms):
+
         any_stairs = False
         any_bar = False
-        self.onGround = False;
+        self.onGround = False
+        if isinstance(self, Player):
+            self.on_goal = False
+
         for p in platforms:
+
+            if isinstance(self, Player) and isinstance(p, GoalBlock) and pygame.sprite.collide_rect(self, p):
+                self.on_goal = True
+                # offset = 0.1
+                # self.rect.top += offset
+                # if pygame.sprite.collide_rect(self, p):
+                #     self.on_goal = True
+                # self.rect.top -= offset
+
             if pygame.sprite.collide_rect(self, p) and p is not self:
 
                 if yvel > 0 and (
@@ -82,9 +96,6 @@ class Player(Entity):
                     any_stairs = True
                 if isinstance(p, BarBlock):
                     any_bar = True
-
-                if isinstance(p, GoalBlock):
-                    pygame.event.post(pygame.event.Event(QUIT))
 
                 if xvel > 0 and p.collides:
                     self.rect.right = p.rect.left

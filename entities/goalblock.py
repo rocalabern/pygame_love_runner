@@ -1,6 +1,7 @@
 import pygame
 from pygame import *
 
+from entities import constants
 from .platformblock import PlatformBlock
 
 
