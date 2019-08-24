@@ -127,5 +127,20 @@ class GameplayLevel:
             pygame.display.update()
             clock.tick(60)
 
+        print("Level finished")
         if not skip:
+            print("Level finished : not skipped")
             pygame.time.wait(1000)
+            if self.level.end_level is not None:
+                print("Level finished : Doing final animation")
+                self.level.end_level(screen, constants.WIN_WIDTH, constants.WIN_HEIGHT)
+                pygame.display.update()
+                pygame.time.wait(2000)
+                while True:
+                    for event in pygame.event.get():
+                        if event.type == QUIT:
+                            pygame.quit()
+                            sys.exit()
+                        if event.type == KEYDOWN:
+                            return
+                    clock.tick(60)

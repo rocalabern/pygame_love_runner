@@ -1,3 +1,6 @@
+import pygame
+from lib import *
+
 
 def read_level(str_file):
     with open(str_file) as f:
@@ -23,6 +26,7 @@ class Level:
         self.VELOCITY_JUMP = 4
         self.VELOCITY_MAX_FALL = 15
         self.captions = None
+        self.end_level = None
 
     def get_level(self):
         return self.level
@@ -32,3 +36,12 @@ class Level:
             self.captions = [caption]
         else:
             self.captions.append(caption)
+
+    def set_end_level(self, end_level=None):
+        def show_image(screen, width, height):
+            image_file = "images/face_mar.png"
+            temp = pygame.image.load(image_file)
+            temp = pygame.transform.scale(temp, (width, height))
+            screen.blit(temp, (0, 0))
+            pg_print_message(screen, "MUY BIEN", width//2, height//2)
+        self.end_level = show_image
