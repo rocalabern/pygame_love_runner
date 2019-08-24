@@ -16,3 +16,9 @@ class PlatformBlock(Entity):
         self.image.convert()
         self.image.fill(Color("#392613"))
         self.rect = Rect(x, y, constants.TILE_X, constants.TILE_Y)
+
+        # image_file = "images/sprites/ground/stoneCenter.png"
+        # image_file = "images/sprites/items/boxCrate.png"
+        # temp = pygame.image.load(image_file)
+        # temp = pygame.transform.scale(temp, (constants.TILE_X, constants.TILE_Y))
+        # self.image = temp

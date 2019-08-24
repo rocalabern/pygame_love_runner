@@ -19,4 +19,9 @@ class StairsBlock(Entity):
             self.image.fill(Color(constants.COLOR_STAIRS), Rect(0, 8*i_step, constants.TILE_X, 1))
         self.rect = Rect(x, y, constants.TILE_X, constants.TILE_Y)
 
+        # image_file = "images/sprites/items/ladderMid.png"
+        # temp = pygame.image.load(image_file)
+        # temp = pygame.transform.scale(temp, (constants.TILE_X, constants.TILE_Y))
+        # self.image = temp
+
 0

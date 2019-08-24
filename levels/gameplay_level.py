@@ -118,6 +118,10 @@ class GameplayLevel:
             for y in range(constants.TILE_Y_NUM):
                 for x in range(constants.TILE_X_NUM):
                     screen.blit(bg, (x * constants.TILE_X, y * constants.TILE_Y))
+            # image_file = "images/sprites/background/blue_land.png"
+            # temp = pygame.image.load(image_file)
+            # temp = pygame.transform.scale(temp, (constants.WIN_WIDTH, constants.WIN_HEIGHT))
+            # screen.blit(temp, (0, 0))
             entities.draw(screen)
 
             if self.level.captions is not None:
