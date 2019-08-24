@@ -13,3 +13,8 @@ COLOR_PLAYER_P2 = "#ff80bf"
 
 WIN_WIDTH = 1312
 WIN_HEIGHT = 704
+
+# IMAGE_Y = "images/face_julia.png"
+# IMAGE_X = "images/face_mar.png"
+IMAGE_X = "images/face_patri.png"
+IMAGE_Y = "images/face_dani.png"

@@ -16,7 +16,7 @@ class Player(Entity):
     has_grip = False
     on_goal = False
 
-    def __init__(self, x, y, color):
+    def __init__(self, x, y, color, image_file=None, flip=False):
         Entity.__init__(self)
         self.color = color
         self.xvel = 0
@@ -26,9 +26,12 @@ class Player(Entity):
         self.onBar = False
         self.image = Surface((constants.TILE_X, constants.TILE_Y))
         self.image.fill(Color(self.color))
-        temp = pygame.image.load("images/face_julia.png")
-        temp = pygame.transform.scale(temp, (constants.TILE_X, constants.TILE_Y))
-        self.image.blit(temp, [0, 0])
+        if image_file is not None:
+            temp = pygame.image.load(image_file)
+            if flip:
+                temp = pygame.transform.flip(temp, True, False)
+            temp = pygame.transform.scale(temp, (constants.TILE_X, constants.TILE_Y))
+            self.image.blit(temp, [0, 0])
         self.image.convert()
         self.rect = Rect(x, y, constants.TILE_X-2, constants.TILE_Y)
 
@@ -80,7 +83,7 @@ class Player(Entity):
             if isinstance(self, Player) and isinstance(p, GoalBlock):
                 offset = 1
                 self.rect.top += offset
-                if pygame.sprite.collide_rect(self, p):
+                if pygame.sprite.collide_rect(self, p) and self.yvel >= 0:
                     self.on_goal = True
                 self.rect.top -= offset
 
