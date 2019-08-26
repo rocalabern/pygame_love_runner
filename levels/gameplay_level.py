@@ -53,6 +53,8 @@ def load_level(level):
     platforms = []
 
     # build the level
+    player_p1 = Player(0, 0, "dummy")
+    player_p2 = Player(0, 0, "dummy")
     x = y = 0
     for level_row in level.get_level():
         for level_block in level_row:
@@ -82,15 +84,19 @@ def load_level(level):
                 entities.add(e)
             if level_block == "Y":
                 player_p1 = Player(x, y, "Y", constants.COLOR_PLAYER_P2, constants.IMAGE_X, flip=True)
+                level.num_players = level.num_players + 1
             if level_block == "X":
                 player_p2 = Player(x, y, "X", constants.COLOR_PLAYER_P1, constants.IMAGE_Y, flip=True)
+                level.num_players = level.num_players + 1
             x += constants.TILE_X
         y += constants.TILE_Y
         x = 0
-    platforms.append(player_p1)
-    entities.add(player_p1)
-    entities.add(player_p2)
-    platforms.append(player_p2)
+    if player_p1.name is not "Dummy":
+        platforms.append(player_p1)
+        entities.add(player_p1)
+    if player_p2.name is not "Dummy":
+        entities.add(player_p2)
+        platforms.append(player_p2)
     return (entities, platforms, player_p1, player_p2)
 
 
@@ -115,12 +121,13 @@ class GameplayLevel:
 
         bg = get_background_tile(constants.TILE_X, constants.TILE_Y)
 
-        image_file = "images/sprites/background/blue_land.png"
-        image_file = "images/wedding/level_Patri/background_level_patri_03.png"
-        image_background = pygame.image.load(image_file)
-        image_background = pygame.transform.scale(image_background, (constants.WIN_WIDTH, int(0.5*constants.WIN_HEIGHT)))
-        # image_background = pygame.transform.scale(image_background, (int(round(0.5*constants.WIN_WIDTH)), int(round(0.5*constants.WIN_HEIGHT))))
-        # image_background_pos_x = int(round(constants.WIN_WIDTH*0.25))
+        image_background = None
+        # image_file = "images/sprites/background/blue_land.png"
+        # image_file = "images/wedding/level_Patri/background_level_patri_03.png"
+        # image_background = pygame.image.load(image_file)
+        # image_background = pygame.transform.scale(image_background, (constants.WIN_WIDTH, int(0.5*constants.WIN_HEIGHT)))
+        # # image_background = pygame.transform.scale(image_background, (int(round(0.5*constants.WIN_WIDTH)), int(round(0.5*constants.WIN_HEIGHT))))
+        # # image_background_pos_x = int(round(constants.WIN_WIDTH*0.25))
         image_background_pos_x = 10
         image_background_pos_y = 10
 
@@ -166,34 +173,47 @@ class GameplayLevel:
             # update player, draw everything else
             player_p1.update(up_p1, down_p1, left_p1, right_p1, platforms)
             player_p2.update(up_p2, down_p2, left_p2, right_p2, platforms)
-            if player_p1.on_goal and player_p2.on_goal:
-                done = True
-                for p in platforms:
-                    if isinstance(p, GoalBlockLeft) or isinstance(p, GoalBlockRight):
-                        p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_full)
-            elif player_p1.on_goal and not player_p2.on_goal:
-                for p in platforms:
-                    if isinstance(p, GoalBlockLeft):
-                        p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_empty)
-                    if isinstance(p, GoalBlockRight):
-                        p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_full)
-            elif not player_p1.on_goal and player_p2.on_goal:
-                for p in platforms:
-                    if isinstance(p, GoalBlockLeft):
-                        p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_full)
-                    if isinstance(p, GoalBlockRight):
-                        p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_empty)
+            if self.level.num_players == 1:
+                if player_p1.on_goal or player_p2.on_goal:
+                    done = True
+                    for p in platforms:
+                        if isinstance(p, GoalBlockLeft) or isinstance(p, GoalBlockRight):
+                            p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_full)
+                else:
+                    for p in platforms:
+                        if isinstance(p, GoalBlockLeft) or isinstance(p, GoalBlockRight):
+                            p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_empty)
+
             else:
-                for p in platforms:
-                    if isinstance(p, GoalBlockLeft) or isinstance(p, GoalBlockRight):
-                        p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_empty)
+                if player_p1.on_goal and player_p2.on_goal:
+                    done = True
+                    for p in platforms:
+                        if isinstance(p, GoalBlockLeft) or isinstance(p, GoalBlockRight):
+                            p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_full)
+                elif player_p1.on_goal and not player_p2.on_goal:
+                    for p in platforms:
+                        if isinstance(p, GoalBlockLeft):
+                            p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_empty)
+                        if isinstance(p, GoalBlockRight):
+                            p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_full)
+                elif not player_p1.on_goal and player_p2.on_goal:
+                    for p in platforms:
+                        if isinstance(p, GoalBlockLeft):
+                            p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_full)
+                        if isinstance(p, GoalBlockRight):
+                            p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_empty)
+                else:
+                    for p in platforms:
+                        if isinstance(p, GoalBlockLeft) or isinstance(p, GoalBlockRight):
+                            p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_empty)
 
             # draw background
             for y in range(constants.TILE_Y_NUM):
                 for x in range(constants.TILE_X_NUM):
                     screen.blit(bg, (x * constants.TILE_X, y * constants.TILE_Y))
 
-            screen.blit(image_background, (image_background_pos_x, image_background_pos_y))
+            if image_background is not None and image_background_pos_x is not None and image_background_pos_y is not None:
+                screen.blit(image_background, (image_background_pos_x, image_background_pos_y))
 
             entities.draw(screen)
 

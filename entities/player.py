@@ -30,7 +30,7 @@ class Player(Entity):
     collides = True
     has_grip = False
 
-    def __init__(self, x, y, name, color, image_file=None, flip=False):
+    def __init__(self, x, y, name, color="#000000", image_file=None, flip=False):
         Entity.__init__(self)
         self.name = name
         self.color = color

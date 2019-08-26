@@ -1,6 +1,8 @@
 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+P                                                                                P
+P                                                                                P
 P    P                                                                           P
-P    PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPEEPPPPPPPPPPGGGGGPPP
+P    PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPEEPPPPPPPPPPGGLRGPPP
 P    P                                                        EE                 P
 P    PPPPPEEPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP  EE                 P
 P    P    EE                                               PPPPPPPPPPP           P
@@ -11,8 +13,6 @@ P                EE                                                 EE          
 P                EE                                                 EE           P
 P                EE                                                 EE           P
 P                PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP               EE           P
-P                                                                   EE           P
-P                                                                   EE           P
 P                                                                   EE           P
 P    PPPPPEEPPPPPPPPPBBBBBBBBBBBBBBBBBBBBBBBBPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
 P    P    EE  P                                                                  P

@@ -21,8 +21,8 @@ P                                                                               
 P                                                                                P
 P                                                                                P
 P                                                                                P
-P      PPPPPBBBBBBBBBPP            PPPPPPPBPGGGPBBPPPPPPP                        P
-P      PPPPP         PPP            PPPPPP   P   PPPPPPP                         P
+P                                  PPPPPPPBPGLRGBPPPPPPPP                        P
+P                                   PPPPPP   P   PPPPPPP                         P
 P                                       PPPPEPEPPPP                              P
 P                                           EPE                                  P
 P                                           EPE                                  P
@@ -30,12 +30,12 @@ P      EEPPPPPPPPPPE                        EPE    EEPPPP         PPPPP         
 P      EE          E    EEPPPPPPPPPPEE      EPE    EEP   PP       PPPPP          P
 P      EE          E    EE          EE      EPE    EEP      PP                   P
 P      EE          E    EE          EE      EPE    EEP     PPP      EE           P
-P      EEPPPPPPPPPPE    EEBBBBBBBBBBEE      EPE    EEP    PPP       EE           P
-P      EE               EE          EE      EPE    EEP   PPP        EE           P
-P      EE               EE          EE      EPE    EEP  PPP         EEPPP        P
-P      EE               EE          EE      EPE    EEPP             EE  PP       P
-P      EE               EE          EE      EPE    EE  PP           EE   PPP   Y P
-P      EE         P     EE          PPBBBBBBEPE    EE   PP          EE     PPPPP P
+P      EEPPPPPPPPPPE    EEBBBBBBBBBBEE      EPE    EEP    PPP       EE        Y  P
+P      EE               EE          EE      EPE    EEP   PPP        EE   PPPPPPPPP
+P      EE               EE          EE      EPE    EEP  PPP         EE           P
+P      EE               EE          EE      EPE    EEPP             EE           P
+P      EE               EE          EE      EPE    EE  PP           EE           P
+P      EE         P     EE          PPBBBBBBEPE    EE   PP          EE           P
 P   X  EE         P     EE           P       PE    EE    PP         EE           P
 P   PPPEEP        PP    EEP          PP      PE    EE     PP        EE           P
 P         PP      PPPPPPPPP         PPPP     PE    PP      PPBBBBBBBEE           P

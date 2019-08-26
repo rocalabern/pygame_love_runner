@@ -4,8 +4,9 @@ from pygame import *
 from lib import *
 from entities import constants
 from levels import GameplayLevel
-from levels import DictionaryLevels
-
+from levels.tutorial_levels import *
+from levels.game_levels import *
+from levels.test_levels import *
 
 def main():
     pygame.mixer.pre_init(48000, -16, 2, 2048)
@@ -14,23 +15,19 @@ def main():
     pygame.display.set_caption("Love Runner")
     clock = pygame.time.Clock()
 
-    dict_levels = DictionaryLevels(constants.WIN_WIDTH, constants.WIN_HEIGHT)
     levels = [
-        dict_levels.get_level("tutorial_00"),
-        dict_levels.get_level("level_01_Patri"),
-        dict_levels.get_level("level_02_Dani"),
-        dict_levels.get_level("level_00")
+        tutorial_01(),
+        tutorial_02(),
+        tutorial_03(),
+        tutorial_04(),
+        level_02_Patri(),
+        level_03_Dani(),
+        level_01()
     ]
 
-    # levels = [
-    #     dict_levels.get_level("test_00"),
-    #     dict_levels.get_level("test_01"),
-    #     dict_levels.get_level("test_02")
-    # ]
-    #
-    # levels = [
-    #     dict_levels.get_level("level_01_Patri")
-    # ]
+    for i in range(1, len(levels)):
+        level = levels[i-1]
+        level.add_caption(create_caption("Level " + str(i).zfill(2), 5, 5, color_fg=(170, 170, 170)))
 
     done = False
     i = 0

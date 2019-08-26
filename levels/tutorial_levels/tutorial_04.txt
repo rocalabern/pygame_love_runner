@@ -2,9 +2,9 @@ PPPPPPPPPPPPPPPPPPPPP
 P                   P
 P                   P
 P                   P
-P                   P
-P  X             Y  P
-PPPPPPPPPGGPPPPPPPPPP
+P    P        P     P
+P X PP        PP Y  P
+PPPPPPPPPLRPPPPPPPPPP
 P                   P
 P                   P
 P                   P
