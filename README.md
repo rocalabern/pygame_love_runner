@@ -14,4 +14,5 @@ Some resources that helped me to choose pygame to develop the game:
 
 ## Dependencies
 
-* pygame
+* pygame 1.9.6
+* mutagen 1.42.0

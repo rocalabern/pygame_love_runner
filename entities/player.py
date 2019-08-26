@@ -7,32 +7,40 @@ from entities import PlatformBlock
 from entities import StairsBlock
 from entities import BarBlock
 from entities import GoalBlock
+from entities import GoalBlockLeft
+from entities import GoalBlockRight
+
+def draw_player(color, image_file=None, flip=False):
+    temp_image = Surface((constants.TILE_X, constants.TILE_Y))
+    temp_image.fill(Color(color))
+    if image_file is not None:
+        temp = pygame.image.load(image_file)
+        if flip:
+            temp = pygame.transform.flip(temp, True, False)
+        temp = pygame.transform.scale(temp, (constants.TILE_X, constants.TILE_Y))
+        temp_image.blit(temp, [0, 0])
+        if constants.TILE_X > 16:
+            temp_image = temp   # without background
+    temp_image.convert()
+    return temp_image
 
 
 class Player(Entity):
 
-    color = None
     collides = True
     has_grip = False
-    on_goal = False
 
-    def __init__(self, x, y, color, image_file=None, flip=False):
+    def __init__(self, x, y, name, color, image_file=None, flip=False):
         Entity.__init__(self)
+        self.name = name
         self.color = color
         self.xvel = 0
         self.yvel = 0
         self.onGround = False
         self.onStairs = False
         self.onBar = False
-        self.image = Surface((constants.TILE_X, constants.TILE_Y))
-        self.image.fill(Color(self.color))
-        if image_file is not None:
-            temp = pygame.image.load(image_file)
-            if flip:
-                temp = pygame.transform.flip(temp, True, False)
-            temp = pygame.transform.scale(temp, (constants.TILE_X, constants.TILE_Y))
-            self.image.blit(temp, [0, 0])
-        self.image.convert()
+        self.on_goal = False
+        self.image = draw_player(self.color, image_file, flip)
         self.rect = Rect(x, y, constants.TILE_X-2, constants.TILE_Y)
 
     def update(self, up, down, left, right, platforms):
@@ -80,7 +88,7 @@ class Player(Entity):
 
         for p in platforms:
 
-            if isinstance(self, Player) and isinstance(p, GoalBlock):
+            if isinstance(self, Player) and (isinstance(p, GoalBlock) or isinstance(p, GoalBlockLeft) or isinstance(p, GoalBlockRight)):
                 offset = 1
                 self.rect.top += offset
                 if pygame.sprite.collide_rect(self, p) and self.yvel >= 0:

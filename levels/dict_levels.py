@@ -4,7 +4,7 @@ from . import *
 
 class DictionaryLevels:
 
-    num_level = 0
+    num_level = 1
 
     def __init__(self, width, height):
         self.width = width

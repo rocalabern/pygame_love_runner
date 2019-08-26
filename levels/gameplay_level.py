@@ -1,3 +1,5 @@
+import sys
+import mutagen.mp3
 import pygame
 from pygame import *
 
@@ -5,12 +7,37 @@ from lib import *
 from entities import *
 
 
-def get_background_tile(tile_x, tile_y):
+def get_background_tile_simple(tile_x, tile_y):
     bg = Surface((tile_x, tile_y))
     bg.convert()
+
     bg.fill(Color(constants.COLOR_BCKGRND_BOLD))
-    bg.fill(Color(constants.COLOR_BCKGRND), Rect(2, 2, tile_x-2, tile_y-2))
+    bg.fill(Color("#ffe6e6"))
+    bg.fill(Color("#ffffff"), Rect(2, 2, tile_x-2, tile_y-2))
+
     return bg
+
+
+def get_background_tile(tile_x, tile_y):
+    # bessel_perc = 16
+    # # color_dark = "#330033"
+    # # color_light = "#990099"
+    # # color_main = "#4d004d"
+    # color_dark = "#1a1a1a"
+    # color_light = "#404040"
+    # color_main = "#595959"
+    #
+    # temp = create_block_bessel(
+    #     constants.TILE_X,
+    #     constants.TILE_Y,
+    #     color_light, color_dark, color_main,
+    #     bessel_perc)
+
+    temp = Surface((tile_x, tile_y))
+    temp.convert()
+    temp.fill(Color(constants.COLOR_BAR_BCKGRND))
+
+    return temp
 
 
 def load_level(level):
@@ -45,10 +72,18 @@ def load_level(level):
                 e = GoalBlock(x, y)
                 platforms.append(e)
                 entities.add(e)
+            if level_block == "L":
+                e = GoalBlockLeft(x, y)
+                platforms.append(e)
+                entities.add(e)
+            if level_block == "R":
+                e = GoalBlockRight(x, y)
+                platforms.append(e)
+                entities.add(e)
             if level_block == "Y":
-                player_p1 = Player(x, y, constants.COLOR_PLAYER_P2, constants.IMAGE_X, flip=True)
+                player_p1 = Player(x, y, "Y", constants.COLOR_PLAYER_P2, constants.IMAGE_X, flip=True)
             if level_block == "X":
-                player_p2 = Player(x, y, constants.COLOR_PLAYER_P1, constants.IMAGE_Y, flip=True)
+                player_p2 = Player(x, y, "X", constants.COLOR_PLAYER_P1, constants.IMAGE_Y, flip=True)
             x += constants.TILE_X
         y += constants.TILE_Y
         x = 0
@@ -67,7 +102,27 @@ class GameplayLevel:
     def play(self, screen, clock):
         (entities, platforms, player_p1, player_p2) = load_level(self.level)
 
+        import mutagen.mp3
+
+        music_file = 'music/8-bit-mario-theme.mp3'
+        # mp3 = mutagen.mp3.MP3(music_file)
+        # pygame.mixer.init()
+        # print("sample rate : " + str(mp3.info.sample_rate))
+        # pygame.mixer.init(frequency=mp3.info.sample_rate)
+        # pygame.mixer.init(frequency=20000)
+        pygame.mixer.music.load(music_file)
+        pygame.mixer.music.play(-1)
+
         bg = get_background_tile(constants.TILE_X, constants.TILE_Y)
+
+        image_file = "images/sprites/background/blue_land.png"
+        image_file = "images/wedding/level_Patri/background_level_patri_03.png"
+        image_background = pygame.image.load(image_file)
+        image_background = pygame.transform.scale(image_background, (constants.WIN_WIDTH, int(0.5*constants.WIN_HEIGHT)))
+        # image_background = pygame.transform.scale(image_background, (int(round(0.5*constants.WIN_WIDTH)), int(round(0.5*constants.WIN_HEIGHT))))
+        # image_background_pos_x = int(round(constants.WIN_WIDTH*0.25))
+        image_background_pos_x = 10
+        image_background_pos_y = 10
 
         up_p1 = down_p1 = left_p1 = right_p1 = False
         up_p2 = down_p2 = left_p2 = right_p2 = False
@@ -76,7 +131,7 @@ class GameplayLevel:
         skip = False
         while not done:
 
-            e: event
+            # e: event
             for e in pygame.event.get():
                 if e.type == QUIT:
                     raise SystemExit("ESCAPE")
@@ -113,15 +168,33 @@ class GameplayLevel:
             player_p2.update(up_p2, down_p2, left_p2, right_p2, platforms)
             if player_p1.on_goal and player_p2.on_goal:
                 done = True
+                for p in platforms:
+                    if isinstance(p, GoalBlockLeft) or isinstance(p, GoalBlockRight):
+                        p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_full)
+            elif player_p1.on_goal and not player_p2.on_goal:
+                for p in platforms:
+                    if isinstance(p, GoalBlockLeft):
+                        p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_empty)
+                    if isinstance(p, GoalBlockRight):
+                        p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_full)
+            elif not player_p1.on_goal and player_p2.on_goal:
+                for p in platforms:
+                    if isinstance(p, GoalBlockLeft):
+                        p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_full)
+                    if isinstance(p, GoalBlockRight):
+                        p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_empty)
+            else:
+                for p in platforms:
+                    if isinstance(p, GoalBlockLeft) or isinstance(p, GoalBlockRight):
+                        p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_empty)
 
             # draw background
             for y in range(constants.TILE_Y_NUM):
                 for x in range(constants.TILE_X_NUM):
                     screen.blit(bg, (x * constants.TILE_X, y * constants.TILE_Y))
-            # image_file = "images/sprites/background/blue_land.png"
-            # temp = pygame.image.load(image_file)
-            # temp = pygame.transform.scale(temp, (constants.WIN_WIDTH, constants.WIN_HEIGHT))
-            # screen.blit(temp, (0, 0))
+
+            screen.blit(image_background, (image_background_pos_x, image_background_pos_y))
+
             entities.draw(screen)
 
             if self.level.captions is not None:
@@ -139,12 +212,13 @@ class GameplayLevel:
                 print("Level finished : Doing final animation")
                 self.level.end_level(screen, constants.WIN_WIDTH, constants.WIN_HEIGHT)
                 pygame.display.update()
-                pygame.time.wait(2000)
+                pygame.time.wait(5000)
+
                 while True:
                     for event in pygame.event.get():
                         if event.type == QUIT:
                             pygame.quit()
                             sys.exit()
-                        if event.type == KEYDOWN:
+                        if event.type == KEYDOWN and event.key == K_F10:
                             return
                     clock.tick(60)
