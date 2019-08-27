@@ -21,6 +21,9 @@ def main():
         tutorial_02(),
         tutorial_03(),
         tutorial_04(),
+        tutorial_05(),
+        tutorial_06(),
+        tutorial_07(),
         level_02_Patri(),
         level_03_Dani(),
         level_01()
