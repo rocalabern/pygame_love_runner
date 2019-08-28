@@ -24,6 +24,9 @@ def main():
         tutorial_05(),
         tutorial_06(),
         tutorial_07(),
+        tutorial_08(),
+        tutorial_09(),
+        tutorial_10(),
         level_02_Patri(),
         level_03_Dani(),
         level_01()
@@ -104,7 +107,7 @@ def main():
             screen.blit(image_ball, (516, 321+(state-1)*52))
             pygame.display.update()
             clock.tick(600)
-    pygame.time.wait(5000)
+    pygame.time.wait(3000)
 
     done = False
     i = 0
