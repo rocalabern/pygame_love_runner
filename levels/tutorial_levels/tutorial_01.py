@@ -7,7 +7,7 @@ from levels import *
 
 def set_end_level(level):
     def show_image(screen, width, height):
-        image_file = "images/face_mar.png"
+        image_file = "images/thumbs-up/mar_muy_bien_01.png"
         # image_file = "images/julia_muy_bien.png"
         temp = pygame.image.load(image_file)
         temp = pygame.transform.scale(temp, (width, height))

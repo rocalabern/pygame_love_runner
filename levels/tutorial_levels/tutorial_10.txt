@@ -6,7 +6,7 @@ P  EPPBBBBBBBBBBPPE P
 P  EP             E P
 P  EPPP    BBBBBBPE P
 P  E              E P
-P  EPPPP     PPP  E P
+P  PPPPP    PPPP  E P
 P                 E P
 P X Y             E P
 PPPPPPPPPPPPPPPPPPPPP

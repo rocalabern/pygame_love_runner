@@ -1,9 +1,9 @@
 PPPPPPPPPPPPPPPPPPPPP
 P                   P
-P                   P
-PE PPBBBBBBBBBBBPP EP
-PE  P           P  EP
-PE XP           PY EP
+PE  PPPPPPPPPPPPP  EP
+PE  BBBBBBBBBBBBB  EP
+PE EP           PE EP
+PEXEP           PEYEP
 PEPPP    LR     PPPEP
 PE                 EP
 PE                 EP

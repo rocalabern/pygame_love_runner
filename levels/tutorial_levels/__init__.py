@@ -9,3 +9,4 @@ from .tutorial_07 import tutorial_07
 from .tutorial_08 import tutorial_08
 from .tutorial_09 import tutorial_09
 from .tutorial_10 import tutorial_10
+from .tutorial_11 import tutorial_11

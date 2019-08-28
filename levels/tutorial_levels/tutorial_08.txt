@@ -4,8 +4,8 @@ PX   P         P   YP
 PPPPEP         PEPPPP
 P   EP         PE   P
 P   EP         PE   P
-PEPPPP   LR    PPPPEP
-PE       EE        EP
+PEPPPP  ELRE   PPPPEP
+PE      E  E       EP
 PE       EE        EP
 PE       EE        EP
 PE       EE        EP
