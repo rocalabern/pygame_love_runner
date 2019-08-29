@@ -12,7 +12,14 @@ from levels.test_levels import *
 def main():
     pygame.mixer.pre_init(48000, -16, 2, 2048)
     pygame.init()
-    screen = pygame.display.set_mode((constants.WIN_WIDTH, constants.WIN_HEIGHT))
+    # 1366 x 768
+    # (1366-1312)/2 = 54/2 = 27
+    # (768-704)/2 = 64/2 = 32
+    offset_width = 27
+    offset_height = 32
+
+    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    # screen = pygame.display.set_mode((constants.WIN_WIDTH, constants.WIN_HEIGHT))
     pygame.display.set_caption("Love Runner")
     clock = pygame.time.Clock()
 
@@ -101,8 +108,8 @@ def main():
 
                 image_title = pygame.image.load(image_file)
                 image_ball = pygame.image.load(image_file_ball)
-                screen.blit(image_title, (0, 0))
-                screen.blit(image_ball, (516, 321 + (state - 1) * 52))
+                screen.blit(image_title, (offset_width, offset_height))
+                screen.blit(image_ball, (offset_width+516, offset_height+321 + (state - 1) * 52))
                 pygame.display.update()
                 clock.tick(600)
                 pygame.time.wait(3000)
@@ -112,15 +119,16 @@ def main():
             # draw background
             image_title = pygame.image.load(image_file)
             image_ball = pygame.image.load(image_file_ball)
-            screen.blit(image_title, (0, 0))
-            screen.blit(image_ball, (516, 321+(state-1)*52))
+            screen.blit(image_title, (offset_width, offset_height))
+            screen.blit(image_ball, (offset_width+516, offset_height+321+(state-1)*52))
             pygame.display.update()
             clock.tick(600)
 
     done = False
     i = 0
     while i < len(levels) and not done:
-        gameplay_level = GameplayLevel(levels[i])
+        # gameplay_level = GameplayLevel(levels[i], offset_width, offset_height)
+        gameplay_level = GameplayLevel(levels[i], 0, 0)
         gameplay_level.play(screen, clock)
         i = i + 1
 

@@ -3,7 +3,7 @@ P                   P
 PBBBBBBBBBBBBBBBBBBBP
 P   P           P   P
 PX PP           PP YP
-PEPPP           PPPEsP
+PEPPP           PPPEP
 PEPPP    LR     PPPEP
 PE                 EP
 PE                 EP

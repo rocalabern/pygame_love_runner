@@ -40,7 +40,7 @@ def get_background_tile(tile_x, tile_y):
     return temp
 
 
-def load_level(level):
+def load_level(level, offset_width, offset_height):
     constants.VELOCITY_MOVEMENT = level.VELOCITY_MOVEMENT
     constants.VELOCITY_JUMP = level.VELOCITY_JUMP
     constants.VELOCITY_MAX_FALL = level.VELOCITY_MAX_FALL
@@ -55,7 +55,8 @@ def load_level(level):
     # build the level
     player_p1 = Player(0, 0, "dummy")
     player_p2 = Player(0, 0, "dummy")
-    x = y = 0
+    x = offset_width
+    y = offset_height
     for level_row in level.get_level():
         for level_block in level_row:
             if level_block == "P":
@@ -96,7 +97,7 @@ def load_level(level):
                 level.num_players = level.num_players + 1
             x += constants.TILE_X
         y += constants.TILE_Y
-        x = 0
+        x = offset_width
     if player_p1.name is not "Dummy":
         platforms.append(player_p1)
         entities.add(player_p1)
@@ -108,11 +109,15 @@ def load_level(level):
 
 class GameplayLevel:
 
-    def __init__(self, level):
+    def __init__(self, level, offset_width, offset_height):
         self.level = level
+        self.offset_width = offset_width
+        self.offset_height = offset_height
 
     def play(self, screen, clock):
-        (entities, platforms, player_p1, player_p2) = load_level(self.level)
+        screen.fill((0, 0, 0))
+
+        (entities, platforms, player_p1, player_p2) = load_level(self.level, self.offset_width, self.offset_height)
 
         music_file = 'music/8-bit-mario-theme.mp3'
         pygame.mixer.music.load(music_file)
