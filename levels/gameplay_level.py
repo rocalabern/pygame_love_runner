@@ -119,6 +119,8 @@ class GameplayLevel:
         pygame.mixer.music.play(-1)
 
         bg = get_background_tile(constants.TILE_X, constants.TILE_Y)
+        if self.level.prepare_background is not None:
+            self.level.prepare_background(self.level, constants.WIN_WIDTH, constants.WIN_HEIGHT)
 
         up_p1 = down_p1 = left_p1 = right_p1 = False
         up_p2 = down_p2 = left_p2 = right_p2 = False
@@ -202,7 +204,7 @@ class GameplayLevel:
                     screen.blit(bg, (x * constants.TILE_X, y * constants.TILE_Y))
 
             if self.level.print_background is not None:
-                self.level.print_background(screen, constants.WIN_WIDTH, constants.WIN_HEIGHT)
+                self.level.print_background(self.level, screen, constants.WIN_WIDTH, constants.WIN_HEIGHT)
 
             entities.draw(screen)
 
@@ -217,11 +219,9 @@ class GameplayLevel:
         if not skip:
             print("Level finished : not skipped")
             pygame.time.wait(1000)
-            if self.level.end_level is not None:
+            if self.level.success_animation is not None:
                 print("Level finished : Doing final animation")
                 self.level.success_animation(screen, constants.WIN_WIDTH, constants.WIN_HEIGHT)
-                # pygame.display.update()
-                # pygame.time.wait(5000)
 
                 while True:
                     for event in pygame.event.get():

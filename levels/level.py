@@ -39,6 +39,7 @@ class Level:
         self.VELOCITY_JUMP = velocity_jump
         self.VELOCITY_MAX_FALL = 15
 
+        self.prepare_background = None
         self.print_background = None
         self.captions = None
         self.success_animation = None
