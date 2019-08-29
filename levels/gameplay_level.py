@@ -108,14 +108,7 @@ class GameplayLevel:
     def play(self, screen, clock):
         (entities, platforms, player_p1, player_p2) = load_level(self.level)
 
-        import mutagen.mp3
-
         music_file = 'music/8-bit-mario-theme.mp3'
-        # mp3 = mutagen.mp3.MP3(music_file)
-        # pygame.mixer.init()
-        # print("sample rate : " + str(mp3.info.sample_rate))
-        # pygame.mixer.init(frequency=mp3.info.sample_rate)
-        # pygame.mixer.init(frequency=20000)
         pygame.mixer.music.load(music_file)
         pygame.mixer.music.play(-1)
 
@@ -231,8 +224,8 @@ class GameplayLevel:
             if self.level.end_level is not None:
                 print("Level finished : Doing final animation")
                 self.level.end_level(screen, constants.WIN_WIDTH, constants.WIN_HEIGHT)
-                pygame.display.update()
-                pygame.time.wait(5000)
+                # pygame.display.update()
+                # pygame.time.wait(5000)
 
                 while True:
                     for event in pygame.event.get():

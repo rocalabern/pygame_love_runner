@@ -34,11 +34,19 @@ class Level:
             self.TILE_Y = tile_y
         self.TILE_Y_NUM = self.level.__len__()
         self.TILE_X_NUM = self.level[0].__len__()
+
         self.VELOCITY_MOVEMENT = velocity_movement
         self.VELOCITY_JUMP = velocity_jump
         self.VELOCITY_MAX_FALL = 15
+
+        self.image_background = None
+        self.image_background_pos_x = None
+        self.image_background_pos_y = None
+
         self.captions = None
+
         self.end_level = None
+
         self.num_players = num_players
 
     def get_level(self):
@@ -49,13 +57,3 @@ class Level:
             self.captions = [caption]
         else:
             self.captions.append(caption)
-
-    def set_end_level(self, end_level=None):
-        def show_image(screen, width, height):
-            # image_file = "images/face_mar.png"
-            image_file = "images/julia_muy_bien.png"
-            temp = pygame.image.load(image_file)
-            temp = pygame.transform.scale(temp, (width, height))
-            screen.blit(temp, (0, 0))
-            pg_print_message(screen, "MUY BIEN", int(round(width/4)), int(round(height/4)), size=128)
-        self.end_level = show_image
