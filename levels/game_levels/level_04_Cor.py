@@ -18,7 +18,7 @@ def show_image(screen, width, height):
 def level_04_Cor():
     level = Level("levels/game_levels/level_04_Cor.txt", 16)
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
-    level.end_level = show_image
+    level.success_animation = show_image
     return level
 
 

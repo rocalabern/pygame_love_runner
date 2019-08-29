@@ -10,7 +10,7 @@ from entities import GoalBlock
 from entities import GoalBlockLeft
 from entities import GoalBlockRight
 
-def draw_player(color, image_file=None, flip=False):
+def draw_player(color, image_file=None, flip=False, force_background=False):
     temp_image = Surface((constants.TILE_X, constants.TILE_Y))
     temp_image.fill(Color(color))
     if image_file is not None:
@@ -19,7 +19,7 @@ def draw_player(color, image_file=None, flip=False):
             temp = pygame.transform.flip(temp, True, False)
         temp = pygame.transform.scale(temp, (constants.TILE_X, constants.TILE_Y))
         temp_image.blit(temp, [0, 0])
-        if constants.TILE_X > 16:
+        if constants.TILE_X > 16 and not force_background:
             temp_image = temp   # without background
     temp_image.convert()
     return temp_image
@@ -30,7 +30,7 @@ class Player(Entity):
     collides = True
     has_grip = False
 
-    def __init__(self, x, y, name, color="#000000", image_file=None, flip=False):
+    def __init__(self, x, y, name, color="#000000", image_file=None, flip=False, force_background=False):
         Entity.__init__(self)
         self.name = name
         self.color = color
@@ -40,7 +40,7 @@ class Player(Entity):
         self.onStairs = False
         self.onBar = False
         self.on_goal = False
-        self.image = draw_player(self.color, image_file, flip)
+        self.image = draw_player(self.color, image_file, flip, force_background)
         self.rect = Rect(x, y, constants.TILE_X-2, constants.TILE_Y)
 
     def update(self, up, down, left, right, platforms):

@@ -39,15 +39,12 @@ class Level:
         self.VELOCITY_JUMP = velocity_jump
         self.VELOCITY_MAX_FALL = 15
 
-        self.image_background = None
-        self.image_background_pos_x = None
-        self.image_background_pos_y = None
-
+        self.print_background = None
         self.captions = None
-
-        self.end_level = None
+        self.success_animation = None
 
         self.num_players = num_players
+        self.player_force_background = False
 
     def get_level(self):
         return self.level

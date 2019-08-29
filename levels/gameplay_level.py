@@ -83,10 +83,16 @@ def load_level(level):
                 platforms.append(e)
                 entities.add(e)
             if level_block == "Y":
-                player_p1 = Player(x, y, "Y", constants.COLOR_PLAYER_P2, constants.IMAGE_X, flip=True)
+                player_p1 = Player(
+                    x, y, "Y",
+                    constants.COLOR_PLAYER_P2, constants.IMAGE_X,
+                    flip=True, force_background=level.player_force_background)
                 level.num_players = level.num_players + 1
             if level_block == "X":
-                player_p2 = Player(x, y, "X", constants.COLOR_PLAYER_P1, constants.IMAGE_Y, flip=True)
+                player_p2 = Player(
+                    x, y, "X",
+                    constants.COLOR_PLAYER_P1, constants.IMAGE_Y,
+                    flip=True, force_background=level.player_force_background)
                 level.num_players = level.num_players + 1
             x += constants.TILE_X
         y += constants.TILE_Y
@@ -113,16 +119,6 @@ class GameplayLevel:
         pygame.mixer.music.play(-1)
 
         bg = get_background_tile(constants.TILE_X, constants.TILE_Y)
-
-        image_background = None
-        # image_file = "images/sprites/background/blue_land.png"
-        # image_file = "images/wedding/level_Patri/background_level_patri_03.png"
-        # image_background = pygame.image.load(image_file)
-        # image_background = pygame.transform.scale(image_background, (constants.WIN_WIDTH, int(0.5*constants.WIN_HEIGHT)))
-        # # image_background = pygame.transform.scale(image_background, (int(round(0.5*constants.WIN_WIDTH)), int(round(0.5*constants.WIN_HEIGHT))))
-        # # image_background_pos_x = int(round(constants.WIN_WIDTH*0.25))
-        image_background_pos_x = 10
-        image_background_pos_y = 10
 
         up_p1 = down_p1 = left_p1 = right_p1 = False
         up_p2 = down_p2 = left_p2 = right_p2 = False
@@ -205,8 +201,8 @@ class GameplayLevel:
                 for x in range(constants.TILE_X_NUM):
                     screen.blit(bg, (x * constants.TILE_X, y * constants.TILE_Y))
 
-            if image_background is not None and image_background_pos_x is not None and image_background_pos_y is not None:
-                screen.blit(image_background, (image_background_pos_x, image_background_pos_y))
+            if self.level.print_background is not None:
+                self.level.print_background(screen, constants.WIN_WIDTH, constants.WIN_HEIGHT)
 
             entities.draw(screen)
 
@@ -223,7 +219,7 @@ class GameplayLevel:
             pygame.time.wait(1000)
             if self.level.end_level is not None:
                 print("Level finished : Doing final animation")
-                self.level.end_level(screen, constants.WIN_WIDTH, constants.WIN_HEIGHT)
+                self.level.success_animation(screen, constants.WIN_WIDTH, constants.WIN_HEIGHT)
                 # pygame.display.update()
                 # pygame.time.wait(5000)
 

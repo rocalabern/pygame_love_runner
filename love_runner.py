@@ -98,6 +98,14 @@ def main():
                 image_file = image_file_love
                 success_sound.play()
                 done = True
+
+                image_title = pygame.image.load(image_file)
+                image_ball = pygame.image.load(image_file_ball)
+                screen.blit(image_title, (0, 0))
+                screen.blit(image_ball, (516, 321 + (state - 1) * 52))
+                pygame.display.update()
+                clock.tick(600)
+                pygame.time.wait(3000)
             else:
                 image_file = image_file_lode
 
@@ -108,7 +116,6 @@ def main():
             screen.blit(image_ball, (516, 321+(state-1)*52))
             pygame.display.update()
             clock.tick(600)
-    pygame.time.wait(3000)
 
     done = False
     i = 0
