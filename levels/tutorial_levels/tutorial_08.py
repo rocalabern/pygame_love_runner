@@ -19,6 +19,7 @@ def tutorial_08():
     level = Level("levels/tutorial_levels/tutorial_08.txt", 64, velocity_jump=6)
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
     level.success_animation = show_image
+    level.offset_width = 10
     return level
 
 

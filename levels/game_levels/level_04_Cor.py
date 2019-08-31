@@ -38,6 +38,7 @@ def level_04_Cor():
     level.prepare_background = prepare_background
     level.print_background = show_background
     level.success_animation = show_image
+    level.offset_width = 2
     return level
 
 

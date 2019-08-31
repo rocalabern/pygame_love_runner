@@ -128,7 +128,7 @@ def main():
     i = 0
     while i < len(levels) and not done:
         # gameplay_level = GameplayLevel(levels[i], offset_width, offset_height)
-        gameplay_level = GameplayLevel(levels[i], 0, 0)
+        gameplay_level = GameplayLevel(levels[i])
         gameplay_level.play(screen, clock)
         i = i + 1
 

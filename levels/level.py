@@ -47,6 +47,9 @@ class Level:
         self.num_players = num_players
         self.player_force_background = False
 
+        self.offset_width = 0
+        self.offset_height = 0
+
     def get_level(self):
         return self.level
 

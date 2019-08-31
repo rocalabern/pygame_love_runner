@@ -30,7 +30,15 @@ class Player(Entity):
     collides = True
     has_grip = False
 
-    def __init__(self, x, y, name, color="#000000", image_file=None, flip=False, force_background=False):
+    def __init__(
+            self,
+            x, y, name,
+            color="#000000",
+            image_file=None,
+            flip=False,
+            force_background=False,
+            jump_sound=None
+    ):
         Entity.__init__(self)
         self.name = name
         self.color = color
@@ -42,6 +50,12 @@ class Player(Entity):
         self.on_goal = False
         self.image = draw_player(self.color, image_file, flip, force_background)
         self.rect = Rect(x, y, constants.TILE_X-2, constants.TILE_Y)
+        if jump_sound is None:
+            def play_jump_sound():
+                return(None)
+        else:
+            def play_jump_sound():
+                return(None)
 
     def update(self, up, down, left, right, platforms):
         if self.onStairs:

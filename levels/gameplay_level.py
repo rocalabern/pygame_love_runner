@@ -41,6 +41,8 @@ def get_background_tile(tile_x, tile_y):
 
 
 def load_level(level, offset_width, offset_height):
+    offset_width = level.offset_width
+    offset_height = level.offset_height
     constants.VELOCITY_MOVEMENT = level.VELOCITY_MOVEMENT
     constants.VELOCITY_JUMP = level.VELOCITY_JUMP
     constants.VELOCITY_MAX_FALL = level.VELOCITY_MAX_FALL
@@ -90,13 +92,13 @@ def load_level(level, offset_width, offset_height):
             if level_block == "Y":
                 player_p1 = Player(
                     x, y, "Y",
-                    constants.COLOR_PLAYER_P2, constants.IMAGE_X,
+                    constants.PLAYER_P1_COLOR_BG, constants.IMAGE_X,
                     flip=True, force_background=level.player_force_background)
                 level.num_players = level.num_players + 1
             if level_block == "X":
                 player_p2 = Player(
                     x, y, "X",
-                    constants.COLOR_PLAYER_P1, constants.IMAGE_Y,
+                    constants.PLAYER_P2_COLOR_BG, constants.IMAGE_Y,
                     flip=True, force_background=level.player_force_background)
                 level.num_players = level.num_players + 1
             x += constants.TILE_X
@@ -113,10 +115,10 @@ def load_level(level, offset_width, offset_height):
 
 class GameplayLevel:
 
-    def __init__(self, level, offset_width, offset_height):
+    def __init__(self, level):
         self.level = level
-        self.offset_width = offset_width
-        self.offset_height = offset_height
+        self.offset_width = level.offset_width
+        self.offset_height = level.offset_height
 
     def play(self, screen, clock):
         screen.fill((0, 0, 0))

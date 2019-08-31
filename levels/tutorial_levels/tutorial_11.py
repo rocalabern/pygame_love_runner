@@ -20,6 +20,7 @@ def tutorial_11():
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
     level.success_animation = show_image
     level.player_force_background = True
+    level.offset_width = 10
     return level
 
 
