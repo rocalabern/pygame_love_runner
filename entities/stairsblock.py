@@ -29,7 +29,6 @@ def draw_procedural():
     temp.convert()
     temp.fill(Color(constants.COLOR_STAIRS_BCKGRND))
     i_step = 0
-    print(constants.TILE_Y)
     while i_step <= constants.TILE_Y:
         if (constants.TILE_Y<32):
             temp.fill(Color(COLOR_BAR_LIGHT), Rect(0, i_step, constants.TILE_X, 1))
