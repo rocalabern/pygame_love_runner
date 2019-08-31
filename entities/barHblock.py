@@ -14,18 +14,18 @@ def draw_procedural():
     COLOR_BAR = "#adad85"
     COLOR_BAR_DARK = "#5c5c3d"
     if (constants.TILE_Y < 32):
-        temp.fill(Color(COLOR_BAR_LIGHT), Rect(0, 0, constants.TILE_X, 1))
-        temp.fill(Color(COLOR_BAR), Rect(0, 1, constants.TILE_X, 1))
-        temp.fill(Color(COLOR_BAR_DARK), Rect(0, 2, constants.TILE_X, 1))
+        temp.fill(Color(COLOR_BAR_LIGHT), Rect(0, 2, constants.TILE_X, 1))
+        temp.fill(Color(COLOR_BAR), Rect(0, 3, constants.TILE_X, 2))
+        temp.fill(Color(COLOR_BAR_DARK), Rect(0, 4, constants.TILE_X, 1))
     else:
-        temp.fill(Color(COLOR_BAR_LIGHT), Rect(0, 0, constants.TILE_X, 2))
-        temp.fill(Color(COLOR_BAR), Rect(0, 2, constants.TILE_X, 2))
-        temp.fill(Color(COLOR_BAR_DARK), Rect(0, 4, constants.TILE_X, 2))
+        temp.fill(Color(COLOR_BAR_LIGHT), Rect(0, 4, constants.TILE_X, 2))
+        temp.fill(Color(COLOR_BAR), Rect(0, 6, constants.TILE_X, 2))
+        temp.fill(Color(COLOR_BAR_DARK), Rect(0, 8, constants.TILE_X, 2))
 
     return temp
 
 
-class BarBlock(Entity):
+class BarHBlock(Entity):
 
     collides = False
     has_grip = True

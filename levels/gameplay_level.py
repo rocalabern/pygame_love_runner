@@ -71,6 +71,10 @@ def load_level(level, offset_width, offset_height):
                 e = BarBlock(x, y)
                 platforms.append(e)
                 entities.add(e)
+            if level_block == "H":
+                e = BarHBlock(x, y)
+                platforms.append(e)
+                entities.add(e)
             if level_block == "G":
                 e = GoalBlock(x, y)
                 platforms.append(e)
