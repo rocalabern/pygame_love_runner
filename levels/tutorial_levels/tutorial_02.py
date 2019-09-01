@@ -13,7 +13,6 @@ def show_image(screen, width, height):
     diff = 0.0
     factor = (1.0-diff) * (height / y)
     temp = pygame.transform.scale(temp, (int(round(factor * x)), int(round(factor * y))))
-
     screen.blit(temp, (width - temp.get_rect().size[0], int(round(diff*height))))
 
     pg_print_message(screen, "MUY BIEN", int(round(0.3 * width / 4)), int(round(3*height / 4)), size=128)

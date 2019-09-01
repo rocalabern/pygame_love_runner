@@ -19,8 +19,9 @@ def show_image(screen, width, height):
     pygame.draw.rect(screen, Color("#FFFFFF"), (int(round(0.50 * width - temp.get_rect().size[0]/2)), int(round(diff * height-(diff*height)/4)), temp.get_rect().size[0], temp.get_rect().size[1]))
     screen.blit(temp, (int(round(0.50 * width - temp.get_rect().size[0]/2)), int(round(diff * height-(diff*height)/4))))
 
-    pg_print_message(screen, "Pan, pan, pan, pan, pan, pan, pan, pan, pan, pan,..", int(round(width / 6)), int(round(1 * height / 7)), size=64)
-    pg_print_message(screen, "Tirori, tioriri  (titulo de la película?)", int(round(width / 6)), int(round(2 * height / 7)), size=64)
+    pg_print_message(screen, "Pan, pan, pan, pan, pan, pan, ", int(round(width / 14)), 35, size=64)
+    pg_print_message(screen, "pan, pan, pan, pan,..", int(round(width / 14)), 95, size=64)
+    pg_print_message(screen, "Tirori, tioriri  (titulo de la película?)", int(round(width / 14)), 170, size=64)
 
     pygame.display.update()
     pygame.time.wait(5000)

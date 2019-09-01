@@ -8,11 +8,14 @@ from levels import *
 def prepare_background(level, width, height):
     image_file = "images/wedding/bg/background_level_cor.png"
     image_background = pygame.image.load(image_file)
-    image_background = pygame.transform.scale(image_background, (width, int(0.5 * height)))
-    # image_background = pygame.transform.scale(image_background, (int(round(0.5*width)), int(round(0.5*height))))
-    # image_background_pos_x = int(round(width*0.25))
-    image_background_pos_x = 10
-    image_background_pos_y = 10
+    x = image_background.get_rect().size[0]
+    y = image_background.get_rect().size[1]
+    diff = 0.05
+    factor = (1.0-diff) * (width / x)
+    image_background = pygame.transform.scale(image_background, (int(round(factor * x)), int(round(factor * y))))
+
+    image_background_pos_x = 10+int(round((width-image_background.get_rect().size[0])/2))
+    image_background_pos_y = 70
     level.image_background = image_background
     level.image_background_pos_x = image_background_pos_x
     level.image_background_pos_y = image_background_pos_y
