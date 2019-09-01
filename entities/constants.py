@@ -2,13 +2,13 @@
 WIN_WIDTH = 1312
 WIN_HEIGHT = 704
 
-# IMAGE_Y = "images/face_julia.png"
-# IMAGE_X = "images/face_mar.png"
-IMAGE_X = "images/face_patri.png"
-IMAGE_Y = "images/face_dani.png"
+# IMAGE_P1 = "images/face_julia.png"
+# IMAGE_P2 = "images/face_mar.png"
+IMAGE_P1 = "images/face_patri.png"
+IMAGE_P2 = "images/face_dani.png"
 
-PLAYER_P1_JUMP = "350898__cabled-mess__jump-c-08.wav"
-PLAYER_P2_JUMP = "350900__cabled-mess__jump-c-07.wav"
+PLAYER_P1_JUMP = "sounds/350900__cabled-mess__jump-c-07.wav"
+PLAYER_P2_JUMP = "sounds/350898__cabled-mess__jump-c-08.wav"
 
 PLAYER_P1_COLOR_BG = "#ff80bf"
 PLAYER_P2_COLOR_BG = "#4da6ff"

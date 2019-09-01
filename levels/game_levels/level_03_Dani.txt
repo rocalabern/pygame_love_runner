@@ -26,8 +26,8 @@ P                                                                               
 P                                                                                P
 P PPPPPPPPPP                                                                     P
 P PPPPPPPPPPPPP                                                                  P
-P              PP                                                 PPPPP          P
-P      PP  Y     PP    PEEPPPPPPPPPPEE                            PPPPP          P
+P              PP                                                 PPPPPP         P
+P      PP  Y     PP    PEEPPPPPPPPPPEE                            PPPPPP         P
 PE  PPPPPPPP      PP   PEE         PEE                      PPP                  P
 PE     EEPPPPP  P  PP  PEE         PEE                      PPP     EE       X   P
 PE     EE      PPP     PEE         PEE      EPEPPPP         PPP     EE  PPPPPPPP P

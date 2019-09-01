@@ -51,11 +51,10 @@ class Player(Entity):
         self.image = draw_player(self.color, image_file, flip, force_background)
         self.rect = Rect(x, y, constants.TILE_X-2, constants.TILE_Y)
         if jump_sound is None:
-            def play_jump_sound():
-                return(None)
+            self.jump_sound = None
         else:
-            def play_jump_sound():
-                return(None)
+            self.jump_sound = pygame.mixer.Sound(jump_sound)
+            self.jump_sound.set_volume(1.0)
 
     def update(self, up, down, left, right, platforms):
         if self.onStairs:
@@ -66,6 +65,7 @@ class Player(Entity):
             self.yvel = constants.VELOCITY_MOVEMENT
         if self.onGround and up:
             # only jump if on the ground
+            self.jump_sound.play()
             self.yvel -= constants.VELOCITY_JUMP
 
         if not self.onGround and not self.onStairs and not self.onBar:

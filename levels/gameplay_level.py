@@ -92,14 +92,18 @@ def load_level(level, offset_width, offset_height):
             if level_block == "Y":
                 player_p1 = Player(
                     x, y, "Y",
-                    constants.PLAYER_P1_COLOR_BG, constants.IMAGE_X,
-                    flip=True, force_background=level.player_force_background)
+                    constants.PLAYER_P1_COLOR_BG, constants.IMAGE_P1,
+                    flip=True, force_background=level.player_force_background,
+                    jump_sound=constants.PLAYER_P1_JUMP
+                )
                 level.num_players = level.num_players + 1
             if level_block == "X":
                 player_p2 = Player(
                     x, y, "X",
-                    constants.PLAYER_P2_COLOR_BG, constants.IMAGE_Y,
-                    flip=True, force_background=level.player_force_background)
+                    constants.PLAYER_P2_COLOR_BG, constants.IMAGE_P2,
+                    flip=True, force_background=level.player_force_background,
+                    jump_sound=constants.PLAYER_P2_JUMP
+                )
                 level.num_players = level.num_players + 1
             x += constants.TILE_X
         y += constants.TILE_Y
@@ -127,6 +131,7 @@ class GameplayLevel:
 
         music_file = 'music/8-bit-mario-theme.mp3'
         pygame.mixer.music.load(music_file)
+        pygame.mixer.music.set_volume(0.1)
         pygame.mixer.music.play(-1)
 
         bg = get_background_tile(constants.TILE_X, constants.TILE_Y)
@@ -232,7 +237,7 @@ class GameplayLevel:
             pygame.time.wait(1000)
             if self.level.success_animation is not None:
                 print("Level finished : Doing final animation")
-                self.level.success_animation(screen, constants.WIN_WIDTH, constants.WIN_HEIGHT)
+                self.level.success_animation(screen, constants.current_w, constants.current_h)
 
                 while True:
                     for event in pygame.event.get():

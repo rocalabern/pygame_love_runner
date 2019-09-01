@@ -23,6 +23,12 @@ def main():
     pygame.display.set_caption("Love Runner")
     clock = pygame.time.Clock()
 
+    info_display = pygame.display.Info()
+    constants.current_w = info_display.current_w
+    constants.current_h = info_display.current_h
+    # constants.WIN_WIDTH = constants.current_w
+    # constants.WIN_HEIGHT = constants.current_h
+
     levels = [
         tutorial_01(),
         tutorial_02(),
@@ -40,9 +46,9 @@ def main():
         level_04_Cor()
     ]
 
-    for i in range(1, len(levels)):
-        level = levels[i-1]
-        level.add_caption(create_caption("Level " + str(i).zfill(2), 5, 5, color_fg=(170, 170, 170)))
+    # for i in range(1, len(levels)):
+    #     level = levels[i-1]
+        # level.add_caption(create_caption("Level " + str(i).zfill(2), 5, 5, color_fg=(170, 170, 170)))
 
     # music_file = 'music/8-bit-mario-theme.mp3'
     # pygame.mixer.music.load(music_file)
