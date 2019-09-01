@@ -1,5 +1,4 @@
 import sys
-import mutagen.mp3
 import pygame
 from pygame import *
 

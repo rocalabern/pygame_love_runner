@@ -15,7 +15,7 @@ def pg_print_message(
         message,
         x,
         y,
-        sys_font="suruma",
+        sys_font="TO DEFINE A FONT",
         bold=True,
         size=32,
         color_fg=(237, 210, 36),
