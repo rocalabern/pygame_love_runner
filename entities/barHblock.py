@@ -3,6 +3,7 @@ from pygame import *
 
 from entities import constants
 from .entity import Entity
+from .barblock import BarBlock
 
 
 def draw_procedural():
@@ -25,7 +26,7 @@ def draw_procedural():
     return temp
 
 
-class BarHBlock(Entity):
+class BarHBlock(BarBlock):
 
     collides = False
     has_grip = True
