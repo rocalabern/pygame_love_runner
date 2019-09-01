@@ -22,6 +22,7 @@ def show_image(screen, width, height):
     pg_print_message(screen, "Pan, pan, pan, pan, pan, pan, pan, pan, pan, pan,..", int(round(1 * width / 6)), int(round(height / 6)), size=64)
     pg_print_message(screen, "Tirori, tioriri  (titulo de la película?)", int(round(2 * width / 6)), int(round(height / 6)), size=64)
 
+    pygame.display.update()
     pygame.time.wait(5000)
 
 

@@ -21,6 +21,7 @@ def show_image(screen, width, height):
 
     pg_print_message(screen, "A buena hambre no hay ...", int(round(width / 5)), int(round(height / 6)), size=64)
 
+    pygame.display.update()
     pygame.time.wait(5000)
 
 
