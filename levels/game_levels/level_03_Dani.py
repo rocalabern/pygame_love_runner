@@ -26,16 +26,18 @@ def show_background(level, screen, width, height):
 
 
 def show_image(screen, width, height):
-    image_file = "images/thumbs-up/cristi_muy_bien.png"
+    image_file = "images/thumbs-up/cristi_y_raul_muy_bien.png"
     temp = pygame.image.load(image_file)
     x = temp.get_rect().size[0]
     y = temp.get_rect().size[1]
-    diff = 0.0
+    diff = -0.01
     factor = (1.0-diff) * (height / y)
     temp = pygame.transform.scale(temp, (int(round(factor * x)), int(round(factor * y))))
-    screen.blit(temp, (int(round(0.20*width)), int(round(diff*height))))
+    screen.blit(temp, (int(round(-0.05*width)), int(round(diff*height))))
 
-    pg_print_message(screen, "No puede faltar en una celebración!", int(round(width / 4)), int(round(height / 4)), size=64)
+    pg_print_message(screen, "No puede faltar un pastel", int(round(4 * width / 10)), int(round(8*height/10)), size=64)
+    pg_print_message(screen, "en una celebración!", int(round(4 * width / 10)), int(round(9*height/10)), size=64)
+
 
     pygame.display.update()
     pygame.time.wait(5000)
