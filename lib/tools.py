@@ -21,12 +21,15 @@ def pg_print_message(
         color_fg=(237, 210, 36),
         color_bg=(0, 0, 0),
         alias=8,
-        offset=2
+        offset=4
 ):
     my_font = pygame.font.SysFont(sys_font, size)
     my_font.set_bold(bold)
     text = my_font.render(message, alias, color_bg)
-    screen.blit(text, (x+offset, y+offset))
+    screen.blit(text, (x + offset, y + offset))
+    screen.blit(text, (x - offset, y - offset))
+    screen.blit(text, (x + offset, y - offset))
+    screen.blit(text, (x - offset, y + offset))
     text = my_font.render(message, alias, color_fg)
     screen.blit(text, (x, y))
 

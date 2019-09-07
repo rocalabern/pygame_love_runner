@@ -26,16 +26,45 @@ def show_background(level, screen, width, height):
 
 
 def show_image(screen, width, height):
-    image_file = "images/thumbs-up/noemi_muy_bien.png"
+    image_file = "images/thumbs-up/noemi_y_roc_muy_bien.png"
     temp = pygame.image.load(image_file)
     x = temp.get_rect().size[0]
     y = temp.get_rect().size[1]
     diff = 0.0
-    factor = (1.0-diff) * (height / y)
+    # factor = (1.0 - diff) * (height / y)
+    factor = (1.0 - diff) * (width / x)
     temp = pygame.transform.scale(temp, (int(round(factor * x)), int(round(factor * y))))
-    screen.blit(temp, (int(round(0.20*width)), int(round(diff*height))))
+    y = temp.get_rect().size[1]
+    screen.blit(temp, (int(round(0.0*width)), height-y))
 
-    pg_print_message(screen, "Y finalmente para nuestras lágrimas de alegría por compartir este momento especial en vuestras vides. ​", int(round(width / 4)), int(round(height / 4)), size=64)
+    pg_print_message(
+        screen,
+        "Y finalmente, para nuestras lágrimas de alegría",
+         int(round(width / 14))-20,
+         int(round(1 * height / 12))-40,
+         size=64
+    )
+    pg_print_message(
+        screen,
+        "por compartir este momento especial",
+         int(round(width / 14))-20,
+         int(round(2 * height / 12))-40,
+         size=64
+    )
+    pg_print_message(
+        screen,
+        "en vuestras vidas.",
+         int(round(width / 14))-20,
+         int(round(3 * height / 12)-40),
+         size=64
+    )
+    pg_print_message(
+        screen,
+        "¡¡¡Vivan las novios!!!",
+         int(round(width / 14))+80,
+         int(round(10 * height / 12)-40),
+         size=128
+    )
 
     pygame.display.update()
     pygame.time.wait(5000)
