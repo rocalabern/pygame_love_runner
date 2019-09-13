@@ -14,8 +14,8 @@ def main():
     pygame.mixer.pre_init(48000, -16, 2, 2048)
     pygame.init()
 
-    # screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-    screen = pygame.display.set_mode((constants.WIN_WIDTH, constants.WIN_HEIGHT))
+    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    # screen = pygame.display.set_mode((constants.WIN_WIDTH, constants.WIN_HEIGHT))
     pygame.display.set_caption("Love Runner")
     clock = pygame.time.Clock()
 
