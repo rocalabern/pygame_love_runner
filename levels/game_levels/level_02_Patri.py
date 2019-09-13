@@ -25,7 +25,7 @@ def show_background(level, screen, width, height):
     screen.blit(level.image_background, (level.image_background_pos_x, level.image_background_pos_y))
 
 
-def show_image(screen, width, height):
+def show_image(screen, screen_config, width, height):
     image_file = "images/thumbs-up/carlos_y_tamara_muy_bien.png"
     temp = pygame.image.load(image_file)
     x = temp.get_rect().size[0]
@@ -35,8 +35,8 @@ def show_image(screen, width, height):
     temp = pygame.transform.scale(temp, (int(round(factor * x)), int(round(factor * y))))
     screen.blit(temp, (int(round(0.0*width)), int(round(diff*height))))
 
-    pg_print_message(screen, "Un ramo de flores como", 20+int(round(1366 / 5)), int(round(3 * 768 / 4)), size=64)
-    pg_print_message(screen, "símbolo de nuestro afecto.", 20+int(round(1366 / 5)), int(round(5 * 768 / 6)), size=64)
+    pg_print_message(screen, screen_config, "Un ramo de flores como", 20+int(round(1366 / 5)), int(round(3 * 768 / 4)), size=64)
+    pg_print_message(screen, screen_config, "símbolo de nuestro afecto.", 20+int(round(1366 / 5)), int(round(5 * 768 / 6)), size=64)
 
     pygame.display.update()
     pygame.time.wait(5000)

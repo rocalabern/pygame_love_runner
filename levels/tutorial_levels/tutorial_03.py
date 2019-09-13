@@ -15,8 +15,23 @@ def show_image(screen, screen_config, width, height):
         height,
         margin=diff
     )
-    pygame.draw.rect(screen, Color("#FFFFFF"), (screen_config.x_offset+int(round(0.50 * width - temp.get_rect().size[0]/2)), screen_config.y_offset+int(round(diff * height-(diff*height)/4)), temp.get_rect().size[0], temp.get_rect().size[1]))
-    screen.blit(temp, (screen_config.x_offset+int(round(0.50 * width - temp.get_rect().size[0]/2)), screen_config.y_offset+int(round(diff * height-(diff*height)/4))))
+    pygame.draw.rect(
+        screen,
+        Color("#FFFFFF"),
+        (
+            screen_config.x_offset+int(round(0.50 * width - temp.get_rect().size[0]/2)),
+            screen_config.y_offset+int(round(diff * height-(diff*height)/4)),
+            temp.get_rect().size[0],
+            temp.get_rect().size[1]
+        )
+    )
+    screen.blit(
+        temp,
+        (
+            screen_config.x_offset+int(round(0.50 * width - temp.get_rect().size[0]/2)),
+            screen_config.y_offset+int(round(diff * height-(diff*height)/4))
+        )
+    )
 
     temp = rescale_image_height_pixels(
         "images/wedding/carlos_ruiz_pozo/carlos_ruiz_pozo_01.png",

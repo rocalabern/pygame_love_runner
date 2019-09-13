@@ -25,7 +25,7 @@ def show_background(level, screen, width, height):
     screen.blit(level.image_background, (level.image_background_pos_x, level.image_background_pos_y))
 
 
-def show_image(screen, width, height):
+def show_image(screen, screen_config, width, height):
     image_file = "images/thumbs-up/noemi_y_roc_muy_bien.png"
     temp = pygame.image.load(image_file)
     x = temp.get_rect().size[0]
@@ -39,6 +39,7 @@ def show_image(screen, width, height):
 
     pg_print_message(
         screen,
+        screen_config,
         "Y finalmente, para nuestras lágrimas de alegría",
          int(round(1366 / 14))-20,
          int(round(1 * 768 / 12))-40,
@@ -46,6 +47,7 @@ def show_image(screen, width, height):
     )
     pg_print_message(
         screen,
+        screen_config,
         "por compartir este momento especial",
          int(round(1366 / 14))-20,
          int(round(2 * 768 / 12))-40,
@@ -53,6 +55,7 @@ def show_image(screen, width, height):
     )
     pg_print_message(
         screen,
+        screen_config,
         "en vuestras vidas.",
          int(round(1366 / 14))-20,
          int(round(3 * 768 / 12)-40),
@@ -60,6 +63,7 @@ def show_image(screen, width, height):
     )
     pg_print_message(
         screen,
+        screen_config,
         "¡¡¡Vivan las novios!!!",
          int(round(1366 / 14))+80,
          int(round(10 * 768 / 12)-40),

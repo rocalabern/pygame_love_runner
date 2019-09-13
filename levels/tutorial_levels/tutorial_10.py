@@ -5,7 +5,7 @@ from lib import *
 from levels import *
 
 
-def show_image(screen, width, height):
+def show_image(screen, screen_config, width, height):
     # screen.fill(Color("#FFFFFF"))
     screen.fill(Color("#000000"))
 
@@ -15,8 +15,23 @@ def show_image(screen, width, height):
         height,
         diff=diff
     )
-    pygame.draw.rect(screen, Color("#FFFFFF"), (int(round(0.50 * width - temp.get_rect().size[0]/2)), int(round(diff * height-(diff*height)/4)), temp.get_rect().size[0], temp.get_rect().size[1]))
-    screen.blit(temp, (int(round(0.50 * width - temp.get_rect().size[0]/2)), int(round(diff * height-(diff*height)/4))))
+    pygame.draw.rect(
+        screen,
+        Color("#FFFFFF"),
+        (
+            screen_config.x_offset+int(round(0.50 * width - temp.get_rect().size[0]/2)),
+            screen_config.y_offset+int(round(diff * height-(diff*height)/4)),
+            temp.get_rect().size[0],
+            temp.get_rect().size[1]
+        )
+    )
+    screen.blit(
+        temp,
+        (
+            screen_config.x_offset+int(round(0.50 * width - temp.get_rect().size[0]/2)),
+            screen_config.y_offset+int(round(diff * height-(diff*height)/4))
+        )
+    )
 
     temp = rescale_image_height(
         "images/wedding/carlos_ruiz_pozo/carlos_ruiz_pozo_08.png",
@@ -26,12 +41,12 @@ def show_image(screen, width, height):
     screen.blit(
         temp,
         (
-            width-temp.get_rect().size[0],
-            height-temp.get_rect().size[1]
+            screen_config.x_offset+width-temp.get_rect().size[0],
+            screen_config.y_offset+height-temp.get_rect().size[1]
         )
     )
 
-    pg_print_message(screen, "Hay más refranes que...", int(round(1366 / 5)), int(round(768 / 6)), size=64)
+    pg_print_message(screen, screen_config, "Hay más refranes que...", int(round(1366 / 5)), int(round(768 / 6)), size=64)
 
     pygame.display.update()
     pygame.time.wait(5000)
