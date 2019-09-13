@@ -71,7 +71,7 @@ class Player(Entity):
 
         if not self.onGround and not self.onStairs and not self.onBar:
             # only accelerate with gravity if in the air
-            self.yvel += 0.3
+            self.yvel += 0.3*(constants.TILE_Y/41)
             # max falling speed
             if self.yvel > constants.VELOCITY_MAX_FALL: self.yvel = constants.VELOCITY_MAX_FALL
 

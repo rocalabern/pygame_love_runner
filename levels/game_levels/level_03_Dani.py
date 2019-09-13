@@ -54,7 +54,7 @@ def level_03_Dani(
         screen,
         screen_config,
         clock,
-        velocity_jump=15
+        velocity_jump=6
     )
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
     level.prepare_background = prepare_background
