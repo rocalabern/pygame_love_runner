@@ -63,7 +63,9 @@ def tutorial_05(
         screen_config,
         clock
     )
-    # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
+
+    level.add_caption(create_caption("PISTA: Escaleras, podéis subir y/o bajar por ellas", 176, 600, color_fg=(150, 150, 150)))
+
     level.success_animation = show_image
     level.offset_width = 10
     return level

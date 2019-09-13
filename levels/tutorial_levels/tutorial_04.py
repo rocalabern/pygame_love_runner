@@ -62,7 +62,9 @@ def tutorial_04(
         screen_config,
         clock
     )
-    # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
+
+    level.add_caption(create_caption("PISTA: Podéis saltar con la flecha arriba (Patri) o W (Dani)", 176, 600, color_fg=(150, 150, 150)))
+
     level.success_animation = show_image
     level.offset_width = 10
     return level
