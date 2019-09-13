@@ -40,29 +40,29 @@ def show_image(screen, width, height):
     pg_print_message(
         screen,
         "Y finalmente, para nuestras lágrimas de alegría",
-         int(round(width / 14))-20,
-         int(round(1 * height / 12))-40,
+         int(round(1366 / 14))-20,
+         int(round(1 * 768 / 12))-40,
          size=64
     )
     pg_print_message(
         screen,
         "por compartir este momento especial",
-         int(round(width / 14))-20,
-         int(round(2 * height / 12))-40,
+         int(round(1366 / 14))-20,
+         int(round(2 * 768 / 12))-40,
          size=64
     )
     pg_print_message(
         screen,
         "en vuestras vidas.",
-         int(round(width / 14))-20,
-         int(round(3 * height / 12)-40),
+         int(round(1366 / 14))-20,
+         int(round(3 * 768 / 12)-40),
          size=64
     )
     pg_print_message(
         screen,
         "¡¡¡Vivan las novios!!!",
-         int(round(width / 14))+80,
-         int(round(10 * height / 12)-40),
+         int(round(1366 / 14))+80,
+         int(round(10 * 768 / 12)-40),
          size=128
     )
 
@@ -70,8 +70,17 @@ def show_image(screen, width, height):
     pygame.time.wait(5000)
 
 
-def level_04_Cor():
-    level = Level("levels/game_levels/level_04_Cor.txt", 16)
+def level_04_Cor(
+        screen: pygame.Surface,
+        screen_config: ScreenConfig,
+        clock: pygame.time
+):
+    level = Level(
+        "levels/game_levels/level_04_Cor.txt",
+        screen,
+        screen_config,
+        clock
+    )
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
     level.prepare_background = prepare_background
     level.print_background = show_background

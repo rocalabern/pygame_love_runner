@@ -2,6 +2,7 @@ import sys
 import pygame
 from pygame import *
 
+from levels import Level
 from lib import *
 from entities import *
 
@@ -39,16 +40,20 @@ def get_background_tile(tile_x, tile_y):
     return temp
 
 
-def load_level(level, offset_width, offset_height):
-    offset_width = level.offset_width
-    offset_height = level.offset_height
+def load_level(level: Level, screen_config: ScreenConfig):
+    tile_x = int(screen_config.w/level.TILE_X_NUM)
+    tile_y = int(screen_config.h/level.TILE_Y_NUM)
+    offset_w = screen_config.x_offset + int(round((screen_config.w-tile_x*level.TILE_X_NUM)/2))
+    offset_h = screen_config.y_offset + int(round((screen_config.h-tile_y*level.TILE_Y_NUM)/2))
+
     constants.VELOCITY_MOVEMENT = level.VELOCITY_MOVEMENT
     constants.VELOCITY_JUMP = level.VELOCITY_JUMP
     constants.VELOCITY_MAX_FALL = level.VELOCITY_MAX_FALL
-    constants.TILE_X = level.TILE_X
-    constants.TILE_Y = level.TILE_Y
-    constants.TILE_X_NUM = level.TILE_X_NUM
-    constants.TILE_Y_NUM = level.TILE_Y_NUM
+
+    constants.TILE_X = tile_x
+    constants.TILE_Y = tile_y
+    # constants.TILE_X_NUM = level.TILE_X_NUM
+    # constants.TILE_Y_NUM = level.TILE_Y_NUM
 
     entities = pygame.sprite.Group()
     platforms = []
@@ -56,9 +61,9 @@ def load_level(level, offset_width, offset_height):
     # build the level
     player_p1 = Player(0, 0, "dummy")
     player_p2 = Player(0, 0, "dummy")
-    x = offset_width
-    y = offset_height
+    y = offset_h
     for level_row in level.get_level():
+        x = offset_w
         for level_block in level_row:
             if level_block == "P":
                 e = PlatformBlock(x, y)
@@ -104,29 +109,32 @@ def load_level(level, offset_width, offset_height):
                     jump_sound=constants.PLAYER_P2_JUMP
                 )
                 level.num_players = level.num_players + 1
-            x += constants.TILE_X
-        y += constants.TILE_Y
-        x = offset_width
+            x += tile_x
+        y += tile_y
+
     if player_p1.name is not "Dummy":
         platforms.append(player_p1)
         entities.add(player_p1)
     if player_p2.name is not "Dummy":
         entities.add(player_p2)
         platforms.append(player_p2)
-    return (entities, platforms, player_p1, player_p2)
+    return entities, platforms, player_p1, player_p2
 
 
 class GameplayLevel:
 
-    def __init__(self, level):
+    def __init__(self, level: Level):
         self.level = level
-        self.offset_width = level.offset_width
-        self.offset_height = level.offset_height
 
-    def play(self, screen, clock):
+    def play(self):
+        level = self.level
+        screen = self.level.screen
+        screen_config = self.level.screen_config
+        clock = self.level.clock
+
         screen.fill((0, 0, 0))
 
-        (entities, platforms, player_p1, player_p2) = load_level(self.level, self.offset_width, self.offset_height)
+        (entities, platforms, player_p1, player_p2) = load_level(level, screen_config)
 
         music_file = 'music/8-bit-mario-theme.mp3'
         pygame.mixer.music.load(music_file)
@@ -214,8 +222,8 @@ class GameplayLevel:
                             p.set_draw_procedural(constants.TILE_X, constants.TILE_Y, p.image_empty)
 
             # draw background
-            for y in range(constants.TILE_Y_NUM):
-                for x in range(constants.TILE_X_NUM):
+            for y in range(self.level.TILE_Y_NUM):
+                for x in range(self.level.TILE_X_NUM):
                     screen.blit(bg, (x * constants.TILE_X, y * constants.TILE_Y))
 
             if self.level.print_background is not None:
@@ -225,7 +233,7 @@ class GameplayLevel:
 
             if self.level.captions is not None:
                 for caption in self.level.captions:
-                    caption(screen)
+                    caption(screen, screen_config)
 
             pygame.display.update()
             clock.tick(60)
@@ -236,7 +244,7 @@ class GameplayLevel:
             pygame.time.wait(1000)
             if self.level.success_animation is not None:
                 print("Level finished : Doing final animation")
-                self.level.success_animation(screen, constants.current_w, constants.current_h)
+                self.level.success_animation(screen, screen_config, screen_config.w, screen_config.h)
 
                 while True:
                     for event in pygame.event.get():

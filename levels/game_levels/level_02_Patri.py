@@ -35,15 +35,24 @@ def show_image(screen, width, height):
     temp = pygame.transform.scale(temp, (int(round(factor * x)), int(round(factor * y))))
     screen.blit(temp, (int(round(0.0*width)), int(round(diff*height))))
 
-    pg_print_message(screen, "Un ramo de flores como", 20+int(round(width / 5)), int(round(3 * height / 4)), size=64)
-    pg_print_message(screen, "símbolo de nuestro afecto.", 20+int(round(width / 5)), int(round(5 * height / 6)), size=64)
+    pg_print_message(screen, "Un ramo de flores como", 20+int(round(1366 / 5)), int(round(3 * 768 / 4)), size=64)
+    pg_print_message(screen, "símbolo de nuestro afecto.", 20+int(round(1366 / 5)), int(round(5 * 768 / 6)), size=64)
 
     pygame.display.update()
     pygame.time.wait(5000)
 
 
-def level_02_Patri():
-    level = Level("levels/game_levels/level_02_Patri.txt", 16)
+def level_02_Patri(
+        screen: pygame.Surface,
+        screen_config: ScreenConfig,
+        clock: pygame.time
+):
+    level = Level(
+        "levels/game_levels/level_02_Patri.txt",
+        screen,
+        screen_config,
+        clock
+    )
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
     level.prepare_background = prepare_background
     level.print_background = show_background

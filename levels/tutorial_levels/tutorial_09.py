@@ -5,7 +5,7 @@ from lib import *
 from levels import *
 
 
-def show_image(screen, width, height):
+def show_image(screen, screen_config, width, height):
     # screen.fill(Color("#FFFFFF"))
     screen.fill(Color("#000000"))
 
@@ -31,16 +31,26 @@ def show_image(screen, width, height):
         )
     )
 
-    pg_print_message(screen, "Pan, pan, pan, pan, pan, pan, ", int(round(width / 14)), 35, size=64)
-    pg_print_message(screen, "pan, pan, pan, pan,..", int(round(width / 14)), 95, size=64)
-    pg_print_message(screen, "Tirori, tioriri  (titulo de la película?)", int(round(width / 14)), 170, size=64)
+    pg_print_message(screen, screen_config, "Pan, pan, pan, pan, pan, pan, ", int(round(1366 / 14)), 35, size=64)
+    pg_print_message(screen, screen_config, "pan, pan, pan, pan,..", int(round(1366 / 14)), 95, size=64)
+    pg_print_message(screen, screen_config, "Tirori, tioriri  (titulo de la película?)", int(round(1366 / 14)), 170, size=64)
 
     pygame.display.update()
     pygame.time.wait(5000)
 
 
-def tutorial_09():
-    level = Level("levels/tutorial_levels/tutorial_09.txt", 64, velocity_jump=6)
+def tutorial_09(
+        screen: pygame.Surface,
+        screen_config: ScreenConfig,
+        clock: pygame.time
+):
+    level = Level(
+        "levels/tutorial_levels/tutorial_09.txt",
+        screen,
+        screen_config,
+        clock,
+        velocity_jump=6
+    )
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
     level.success_animation = show_image
     level.offset_width = 10

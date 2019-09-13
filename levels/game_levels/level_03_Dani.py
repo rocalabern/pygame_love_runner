@@ -35,16 +35,25 @@ def show_image(screen, width, height):
     temp = pygame.transform.scale(temp, (int(round(factor * x)), int(round(factor * y))))
     screen.blit(temp, (int(round(-0.05*width)), int(round(diff*height))))
 
-    pg_print_message(screen, "No puede faltar un pastel", int(round(4 * width / 10)), int(round(8*height/10)), size=64)
-    pg_print_message(screen, "en una celebración!", int(round(4 * width / 10)), int(round(9*height/10)), size=64)
+    pg_print_message(screen, "No puede faltar un pastel", int(round(4 * 1366 / 10)), int(round(8*768/10)), size=64)
+    pg_print_message(screen, "en una celebración!", int(round(4 * 1366 / 10)), int(round(9*768/10)), size=64)
 
 
     pygame.display.update()
     pygame.time.wait(5000)
 
 
-def level_03_Dani():
-    level = Level("levels/game_levels/level_03_Dani.txt", 16)
+def level_03_Dani(
+        screen: pygame.Surface,
+        screen_config: ScreenConfig,
+        clock: pygame.time
+):
+    level = Level(
+        "levels/game_levels/level_03_Dani.txt",
+        screen,
+        screen_config,
+        clock
+    )
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
     level.prepare_background = prepare_background
     level.print_background = show_background

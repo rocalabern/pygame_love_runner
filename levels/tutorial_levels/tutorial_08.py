@@ -5,7 +5,7 @@ from lib import *
 from levels import *
 
 
-def show_image(screen, width, height):
+def show_image(screen, screen_config, width, height):
     # screen.fill(Color("#FFFFFF"))
     screen.fill(Color("#000000"))
 
@@ -31,14 +31,24 @@ def show_image(screen, width, height):
         )
     )
 
-    pg_print_message(screen, "A buena hambre no hay ...", int(round(width / 5)), int(round(height / 6)), size=64)
+    pg_print_message(screen, screen_config, "A buena hambre no hay ...", int(round(1366 / 5)), int(round(768 / 6)), size=64)
 
     pygame.display.update()
     pygame.time.wait(5000)
 
 
-def tutorial_08():
-    level = Level("levels/tutorial_levels/tutorial_08.txt", 64, velocity_jump=6)
+def tutorial_08(
+        screen: pygame.Surface,
+        screen_config: ScreenConfig,
+        clock: pygame.time
+):
+    level = Level(
+        "levels/tutorial_levels/tutorial_08.txt",
+        screen,
+        screen_config,
+        clock,
+        velocity_jump=6
+    )
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
     level.success_animation = show_image
     level.offset_width = 10

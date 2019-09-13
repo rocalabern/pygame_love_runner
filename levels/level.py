@@ -15,29 +15,26 @@ class Level:
     def __init__(
             self,
             level_file,
-            tile_x,
-            tile_y: int = None,
-            width=1312,
-            height=704,
+            screen: pygame.Surface,
+            screen_config: ScreenConfig,
+            clock: pygame.time,
             velocity_movement=4,
             velocity_jump=4,
+            velocity_max_fall=15,
             num_players=0
     ):
+        self.screen = screen
+        self.screen_config = screen_config
+        self.clock = clock
+
         self.LEVEL_FILE = level_file
         self.level = read_level(self.LEVEL_FILE)
-        self.width = width
-        self.height = height
-        self.TILE_X = tile_x
-        if tile_y is None:
-            self.TILE_Y = tile_x
-        else:
-            self.TILE_Y = tile_y
         self.TILE_Y_NUM = self.level.__len__()
         self.TILE_X_NUM = self.level[0].__len__()
 
-        self.VELOCITY_MOVEMENT = velocity_movement
-        self.VELOCITY_JUMP = velocity_jump
-        self.VELOCITY_MAX_FALL = 15
+        self.VELOCITY_MOVEMENT = int(round(velocity_movement*(screen_config.w / 1366)))
+        self.VELOCITY_JUMP = int(round(velocity_jump*(screen_config.w / 1366)))
+        self.VELOCITY_MAX_FALL = int(round(velocity_max_fall*(screen_config.w / 1366)))
 
         self.prepare_background = None
         self.print_background = None
@@ -46,9 +43,6 @@ class Level:
 
         self.num_players = num_players
         self.player_force_background = False
-
-        self.offset_width = 0
-        self.offset_height = 0
 
     def get_level(self):
         return self.level

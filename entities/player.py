@@ -65,7 +65,8 @@ class Player(Entity):
             self.yvel = constants.VELOCITY_MOVEMENT
         if self.onGround and up:
             # only jump if on the ground
-            self.jump_sound.play()
+            if self.jump_sound is not None:
+                self.jump_sound.play()
             self.yvel -= constants.VELOCITY_JUMP
 
         if not self.onGround and not self.onStairs and not self.onBar:

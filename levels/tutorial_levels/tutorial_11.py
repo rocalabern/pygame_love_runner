@@ -35,8 +35,18 @@ def show_image(screen, width, height):
     pygame.time.wait(5000)
 
 
-def tutorial_11():
-    level = Level("levels/tutorial_levels/tutorial_11.txt", 64, velocity_jump=6)
+def tutorial_11(
+        screen: pygame.Surface,
+        screen_config: ScreenConfig,
+        clock: pygame.time
+):
+    level = Level(
+        "levels/tutorial_levels/tutorial_11.txt",
+        screen,
+        screen_config,
+        clock,
+        velocity_jump=6
+    )
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
     level.success_animation = show_image
     level.player_force_background = True
