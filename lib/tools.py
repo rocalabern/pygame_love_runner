@@ -10,6 +10,24 @@ def read_level(str_file):
     return line_list
 
 
+def rescale_image_height(image_file, height, diff=0):
+    temp = pygame.image.load(image_file)
+    x = temp.get_rect().size[0]
+    y = temp.get_rect().size[1]
+    factor = (1.0-diff) * (height / y)
+    temp = pygame.transform.scale(temp, (int(round(factor * x)), int(round(factor * y))))
+    return temp
+
+
+def rescale_image_width(image_file, width, diff=0):
+    temp = pygame.image.load(image_file)
+    x = temp.get_rect().size[0]
+    y = temp.get_rect().size[1]
+    factor = (1.0-diff) * (width / x)
+    temp = pygame.transform.scale(temp, (int(round(factor * x)), int(round(factor * y))))
+    return temp
+
+
 def pg_print_message(
         screen,
         message,
