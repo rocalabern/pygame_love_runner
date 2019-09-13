@@ -6,6 +6,7 @@ from levels import *
 
 
 def prepare_background(level, width, height):
+    screen_config = level.screen_config
     image_file = "images/wedding/bg/background_level_cor.png"
     image_background = pygame.image.load(image_file)
     x = image_background.get_rect().size[0]
@@ -17,8 +18,8 @@ def prepare_background(level, width, height):
     image_background_pos_x = 10+int(round((width-image_background.get_rect().size[0])/2))
     image_background_pos_y = 70
     level.image_background = image_background
-    level.image_background_pos_x = image_background_pos_x
-    level.image_background_pos_y = image_background_pos_y
+    level.image_background_pos_x = screen_config.x_offset+int(round(screen_config.w * image_background_pos_x/1366))
+    level.image_background_pos_y = screen_config.y_offset+int(round(screen_config.h * image_background_pos_y/768))
 
 
 def show_background(level, screen, width, height):
@@ -35,7 +36,7 @@ def show_image(screen, screen_config, width, height):
     factor = (1.0 - diff) * (width / x)
     temp = pygame.transform.scale(temp, (int(round(factor * x)), int(round(factor * y))))
     y = temp.get_rect().size[1]
-    screen.blit(temp, (int(round(0.0*width)), height-y))
+    screen.blit(temp, (screen_config.x_offset+int(round(0.0*width)), screen_config.y_offset+height-y))
 
     pg_print_message(
         screen,
