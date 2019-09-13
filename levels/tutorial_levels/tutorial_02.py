@@ -30,10 +30,11 @@ def tutorial_02(
         "levels/tutorial_levels/tutorial_02.txt",
         screen,
         screen_config,
-        clock,
-        velocity_jump=6
+        clock
     )
     level.add_caption(create_caption("Jugador... tienes una cita en la casilla amarilla, y vas tarde...", 176, 120))
+    level.add_caption(create_caption("PISTA: Usa W,A,S,D para moverte", 176, 600, color_fg=(150, 150, 150)))
+
     level.success_animation = show_image
     level.offset_width = 10
     return level

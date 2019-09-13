@@ -30,7 +30,8 @@ def level_01(
         "levels/game_levels/level_01.txt",
         screen,
         screen_config,
-        clock
+        clock,
+        velocity_jump=20
     )
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
     level.success_animation = show_image

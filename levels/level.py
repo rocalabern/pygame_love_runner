@@ -19,7 +19,7 @@ class Level:
             screen_config: ScreenConfig,
             clock: pygame.time,
             velocity_movement=4,
-            velocity_jump=4,
+            velocity_jump=12,
             velocity_max_fall=15,
             num_players=0
     ):
@@ -32,8 +32,11 @@ class Level:
         self.TILE_Y_NUM = self.level.__len__()
         self.TILE_X_NUM = self.level[0].__len__()
 
+        self.tile_x = int(screen_config.w / self.TILE_X_NUM)
+        self.tile_y = int(screen_config.h / self.TILE_Y_NUM)
+
         self.VELOCITY_MOVEMENT = int(round(velocity_movement*(screen_config.w / 1366)))
-        self.VELOCITY_JUMP = int(round(velocity_jump*(screen_config.w / 1366)))
+        self.VELOCITY_JUMP = int(round(velocity_jump*(screen_config.h / 768)*(self.tile_y/64)))
         self.VELOCITY_MAX_FALL = int(round(velocity_max_fall*(screen_config.w / 1366)))
 
         self.prepare_background = None

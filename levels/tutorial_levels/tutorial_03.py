@@ -61,10 +61,11 @@ def tutorial_03(
         "levels/tutorial_levels/tutorial_03.txt",
         screen,
         screen_config,
-        clock,
-        velocity_jump=6
+        clock
     )
-    # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
+    level.add_caption(create_caption("La cita! dos mitades de un corazón", 176, 120))
+    level.add_caption(create_caption("PISTA: Debéis reuniros", 176, 600, color_fg=(150, 150, 150)))
+
     level.success_animation = show_image
     level.offset_width = 10
     return level

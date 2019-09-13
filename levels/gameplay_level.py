@@ -45,6 +45,8 @@ def load_level(level: Level, screen_config: ScreenConfig):
     tile_y = int(screen_config.h/level.TILE_Y_NUM)
     offset_w = screen_config.x_offset + int(round((screen_config.w-tile_x*level.TILE_X_NUM)/2))
     offset_h = screen_config.y_offset + int(round((screen_config.h-tile_y*level.TILE_Y_NUM)/2))
+    level.offset_tile_x = offset_w
+    level.offset_tile_y = offset_h
 
     constants.VELOCITY_MOVEMENT = level.VELOCITY_MOVEMENT
     constants.VELOCITY_JUMP = level.VELOCITY_JUMP
@@ -224,7 +226,13 @@ class GameplayLevel:
             # draw background
             for y in range(self.level.TILE_Y_NUM):
                 for x in range(self.level.TILE_X_NUM):
-                    screen.blit(bg, (x * constants.TILE_X, y * constants.TILE_Y))
+                    screen.blit(
+                        bg,
+                        (
+                            level.offset_tile_x + x * constants.TILE_X,
+                            level.offset_tile_y + y * constants.TILE_Y
+                        )
+                    )
 
             if self.level.print_background is not None:
                 self.level.print_background(self.level, screen, constants.WIN_WIDTH, constants.WIN_HEIGHT)

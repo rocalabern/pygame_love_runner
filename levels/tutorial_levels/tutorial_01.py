@@ -30,10 +30,10 @@ def tutorial_01(
         "levels/tutorial_levels/tutorial_01.txt",
         screen,
         screen_config,
-        clock,
-        velocity_jump=6
+        clock
     )
     level.add_caption(create_caption("Jugadora... tienes una cita en la casilla amarilla", 176, 120))
+    level.add_caption(create_caption("PISTA: Usa las flechas para moverte", 176, 600, color_fg=(150, 150, 150)))
     level.success_animation = show_image
     return level
 

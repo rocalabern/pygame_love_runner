@@ -52,7 +52,8 @@ def level_02_Patri(
         "levels/game_levels/level_02_Patri.txt",
         screen,
         screen_config,
-        clock
+        clock,
+        velocity_jump=15
     )
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
     level.prepare_background = prepare_background

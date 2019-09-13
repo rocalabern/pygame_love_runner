@@ -84,7 +84,7 @@ def menu_title(screen, screen_config, clock):
                 screen.blit(image_ball, (pos_x, pos_y))
 
                 pygame.display.update()
-                clock.tick(600)
+                clock.tick(100)
                 pygame.time.wait(3000)
             else:
                 image_title = image_lode
@@ -96,4 +96,4 @@ def menu_title(screen, screen_config, clock):
             (pos_x, pos_y) = screen_config.position(0.385, 0.465+(state - 1)*0.07)
             screen.blit(image_ball, (pos_x, pos_y))
             pygame.display.update()
-            clock.tick(600)
+            clock.tick(100)
