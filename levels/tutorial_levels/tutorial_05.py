@@ -1,6 +1,7 @@
 import pygame
 from pygame import *
 
+from game_screen.game_screen import GameScreen
 from lib import *
 from levels import *
 
@@ -53,15 +54,11 @@ def show_image(screen, screen_config, width, height):
 
 
 def tutorial_05(
-        screen: pygame.Surface,
-        screen_config: ScreenConfig,
-        clock: pygame.time
+        game_screen: GameScreen
 ):
     level = Level(
         "levels/tutorial_levels/tutorial_05.txt",
-        screen,
-        screen_config,
-        clock
+        game_screen
     )
 
     level.add_caption(create_caption("PISTA: Escaleras, podéis subir y/o bajar por ellas", 176, 600, color_fg=(150, 150, 150)))

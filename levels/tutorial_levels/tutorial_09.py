@@ -1,6 +1,7 @@
 import pygame
 from pygame import *
 
+from game_screen.game_screen import GameScreen
 from lib import *
 from levels import *
 
@@ -55,15 +56,11 @@ def show_image(screen, screen_config, width, height):
 
 
 def tutorial_09(
-        screen: pygame.Surface,
-        screen_config: ScreenConfig,
-        clock: pygame.time
+        game_screen: GameScreen
 ):
     level = Level(
         "levels/tutorial_levels/tutorial_09.txt",
-        screen,
-        screen_config,
-        clock
+        game_screen
     )
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))
     level.success_animation = show_image

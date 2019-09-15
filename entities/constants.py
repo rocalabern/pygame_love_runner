@@ -1,16 +1,6 @@
 # LAPTOP_W = 1366
 # LAPTOP_H = 768
 
-# SCREEN_WIDTH = 1366
-# SCREEN_HEIGHT = 768
-# SCREEN_WIDTH = 1280
-# SCREEN_HEIGHT = 1024
-
-# WIN_WIDTH = 1245
-# WIN_HEIGHT = 700
-WIN_WIDTH = 875
-WIN_HEIGHT = 700
-
 # IMAGE_P1 = "images/face_julia.png"
 # IMAGE_P2 = "images/face_mar.png"
 IMAGE_P1 = "images/face_patri.png"

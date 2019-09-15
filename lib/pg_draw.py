@@ -1,6 +1,5 @@
 import pygame
 from pygame import *
-from screen_config.screen_config import ScreenConfig
 
 
 def create_block_bessel(tile_x, tile_y, color_dark, color_main, color_light, bessel_perc=8):

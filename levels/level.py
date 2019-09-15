@@ -1,4 +1,6 @@
 import pygame
+
+from game_screen.game_screen import GameScreen
 from lib import *
 
 
@@ -15,25 +17,22 @@ class Level:
     def __init__(
             self,
             level_file,
-            screen: pygame.Surface,
-            screen_config: ScreenConfig,
-            clock: pygame.time,
+            game_screen: GameScreen,
             velocity_movement=6,
             velocity_jump=5.5,
             velocity_max_fall=30,
             num_players=0
     ):
-        self.screen = screen
-        self.screen_config = screen_config
-        self.clock = clock
+        self.game_screen = game_screen
+        self.clock = pygame.time.Clock()
 
         self.LEVEL_FILE = level_file
         self.level = read_level(self.LEVEL_FILE)
         self.TILE_Y_NUM = self.level.__len__()
         self.TILE_X_NUM = self.level[0].__len__()
 
-        self.tile_x = int(screen_config.w / self.TILE_X_NUM)
-        self.tile_y = int(screen_config.h / self.TILE_Y_NUM)
+        self.tile_x = int(game_screen.w / self.TILE_X_NUM)
+        self.tile_y = int(game_screen.h / self.TILE_Y_NUM)
 
         self.VELOCITY_MOVEMENT = int(round(velocity_movement*(self.tile_y/40)))
         self.VELOCITY_JUMP = int(round(velocity_jump*(self.tile_y/40)))

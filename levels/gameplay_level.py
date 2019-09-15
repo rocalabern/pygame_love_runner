@@ -1,6 +1,7 @@
 import sys
 import pygame
 from pygame import *
+from game_screen.game_screen import GameScreen
 
 from levels import Level
 from lib import *
@@ -40,11 +41,11 @@ def get_background_tile(tile_x, tile_y):
     return temp
 
 
-def load_level(level: Level, screen_config: ScreenConfig):
-    tile_x = int(screen_config.w/level.TILE_X_NUM)
-    tile_y = int(screen_config.h/level.TILE_Y_NUM)
-    offset_w = screen_config.x_offset + int(round((screen_config.w-tile_x*level.TILE_X_NUM)/2))
-    offset_h = screen_config.y_offset + int(round((screen_config.h-tile_y*level.TILE_Y_NUM)/2))
+def load_level(level: Level, game_screen: GameScreen):
+    tile_x = int(game_screen.w/level.TILE_X_NUM)
+    tile_y = int(game_screen.h/level.TILE_Y_NUM)
+    offset_w = game_screen.x_offset + int(round((game_screen.w-tile_x*level.TILE_X_NUM)/2))
+    offset_h = game_screen.y_offset + int(round((game_screen.h-tile_y*level.TILE_Y_NUM)/2))
     level.offset_tile_x = offset_w
     level.offset_tile_y = offset_h
 
@@ -130,8 +131,9 @@ class GameplayLevel:
 
     def play(self):
         level = self.level
-        screen = self.level.screen
-        screen_config = self.level.screen_config
+        screen = self.level.game_screen.screen_desktop
+        game_screen = self.level.game_screen
+        screen_config = self.level.game_screen
         clock = self.level.clock
 
         screen.fill((0, 0, 0))
@@ -145,7 +147,7 @@ class GameplayLevel:
 
         bg = get_background_tile(constants.TILE_X, constants.TILE_Y)
         if self.level.prepare_background is not None:
-            self.level.prepare_background(self.level, constants.WIN_WIDTH, constants.WIN_HEIGHT)
+            self.level.prepare_background(self.level)
 
         up_p1 = down_p1 = left_p1 = right_p1 = False
         up_p2 = down_p2 = left_p2 = right_p2 = False
@@ -235,14 +237,15 @@ class GameplayLevel:
                     )
 
             if self.level.print_background is not None:
-                self.level.print_background(self.level, screen, constants.WIN_WIDTH, constants.WIN_HEIGHT)
+                self.level.print_background(self.level, screen)
 
             entities.draw(screen)
 
             if self.level.captions is not None:
                 for caption in self.level.captions:
-                    caption(screen, screen_config)
+                    caption(screen_config)
 
+            # game_screen.update()
             pygame.display.update()
             clock.tick(60)
 

@@ -1,12 +1,14 @@
 import pygame
 from pygame import *
 
+from game_screen.game_screen import GameScreen
 from lib import *
 from levels import *
 
 
-def prepare_background(level, width, height):
-    screen_config = level.screen_config
+def prepare_background(level):
+    screen_config = level.game_screen
+    width = level.game_screen.w
     image_file = "images/wedding/bg/background_level_patri.png"
     image_background = pygame.image.load(image_file)
     x = image_background.get_rect().size[0]
@@ -22,7 +24,7 @@ def prepare_background(level, width, height):
     level.image_background_pos_y = screen_config.y_offset+int(round(screen_config.h * image_background_pos_y/768))
 
 
-def show_background(level, screen, width, height):
+def show_background(level, screen):
     screen.blit(level.image_background, (level.image_background_pos_x, level.image_background_pos_y))
 
 
@@ -44,15 +46,11 @@ def show_image(screen, screen_config, width, height):
 
 
 def level_02_Patri(
-        screen: pygame.Surface,
-        screen_config: ScreenConfig,
-        clock: pygame.time
+        game_screen: GameScreen
 ):
     level = Level(
         "levels/game_levels/level_02_Patri.txt",
-        screen,
-        screen_config,
-        clock,
+        game_screen,
         velocity_jump=6
     )
     # level.add_caption(create_caption("Movement Tutorial", level.width//2-400, 5))

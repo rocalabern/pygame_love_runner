@@ -1,11 +1,11 @@
 import pygame
 from pygame import *
-from screen_config.screen_config import ScreenConfig
+from game_screen.game_screen import GameScreen
 
 
 def pg_print_message(
-        screen,
-        screen_config: ScreenConfig,
+        screen: pygame.Surface,
+        game_screen: GameScreen,
         message,
         x,
         y,
@@ -17,19 +17,19 @@ def pg_print_message(
         alias=8,
         offset=4
 ):
-    size = int(round((screen_config.w / 1366) * (size / 32) * 32))
-    x = screen_config.x_offset + int(round((screen_config.w / 1366)*x))
-    y = screen_config.y_offset + int(round((screen_config.w / 1366)*y))
+    size = int(round((game_screen.w / 1366) * (size / 32) * 32))
+    x = game_screen.x_offset + int(round((game_screen.w / 1366)*x))
+    y = game_screen.y_offset + int(round((game_screen.w / 1366)*y))
 
     my_font = pygame.font.SysFont(sys_font, size)
     my_font.set_bold(bold)
     text = my_font.render(message, alias, color_bg)
-    screen.blit(text, (x + offset, y + offset))
-    screen.blit(text, (x - offset, y - offset))
-    screen.blit(text, (x + offset, y - offset))
-    screen.blit(text, (x - offset, y + offset))
+    game_screen.screen_desktop.blit(text, (x + offset, y + offset))
+    game_screen.screen_desktop.blit(text, (x - offset, y - offset))
+    game_screen.screen_desktop.blit(text, (x + offset, y - offset))
+    game_screen.screen_desktop.blit(text, (x - offset, y + offset))
     text = my_font.render(message, alias, color_fg)
-    screen.blit(text, (x, y))
+    game_screen.screen_desktop.blit(text, (x, y))
 
 
 def create_caption(
@@ -44,10 +44,10 @@ def create_caption(
         alias=8,
         offset=2
 ):
-    def new_caption(screen, screen_config):
+    def new_caption(game_screen):
         pg_print_message(
-            screen,
-            screen_config,
+            None,
+            game_screen,
             message,
             x,
             y,

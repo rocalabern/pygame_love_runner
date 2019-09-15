@@ -2,10 +2,10 @@ import pygame
 from pygame import *
 
 from lib import *
-from screen_config.screen_config import ScreenConfig
+from game_screen.game_screen import GameScreen
 
 
-def menu_title(screen, screen_config, clock):
+def menu_title(game_screen: GameScreen):
     # music_file = 'music/8-bit-mario-theme.mp3'
     # pygame.mixer.music.load(music_file)
     # pygame.mixer.music.play(-1)
@@ -18,11 +18,12 @@ def menu_title(screen, screen_config, clock):
 
     image_lode_raw = pygame.image.load(image_file_lode)
     image_love_raw = pygame.image.load(image_file_love)
-    (image_lode, image_lode_x, image_lode_y) = pg_rescale_image_full_screen(screen_config, image_lode_raw, perc=1.0)
-    (image_love, image_love_x, image_love_y) = pg_rescale_image_full_screen(screen_config, image_love_raw, perc=1.0)
+    (image_lode, image_lode_x, image_lode_y) = pg_rescale_image_full_screen(game_screen, image_lode_raw, perc=1.0)
+    (image_love, image_love_x, image_love_y) = pg_rescale_image_full_screen(game_screen, image_love_raw, perc=1.0)
     image_ball_raw = pygame.image.load(image_file_ball)
     image_ball = pg_rescale_image_factor_bg(image_ball_raw, image_lode_raw, image_lode)
 
+    clock = pygame.time.Clock()
     up = down = False
     failed = False
     success = False
@@ -78,10 +79,16 @@ def menu_title(screen, screen_config, clock):
                 done = True
 
                 # draw background
-                screen.blit(image_title, (screen_config.x_offset + image_title_x, screen_config.y_offset + image_title_y))
+                game_screen.screen_desktop.blit(
+                    image_title,
+                    (
+                        game_screen.x_offset + image_title_x,
+                        game_screen.y_offset + image_title_y
+                    )
+                )
 
-                (pos_x, pos_y) = screen_config.position(0.385, 0.465+(state - 1)*0.07)
-                screen.blit(image_ball, (pos_x, pos_y))
+                (pos_x, pos_y) = game_screen.position_desktop(0.385, 0.465+(state - 1)*0.07)
+                game_screen.screen_desktop.blit(image_ball, (pos_x, pos_y))
 
                 pygame.display.update()
                 clock.tick(100)
@@ -92,8 +99,8 @@ def menu_title(screen, screen_config, clock):
                 image_title_y = image_lode_y
 
             # draw background
-            screen.blit(image_title, (screen_config.x_offset + image_title_x, screen_config.y_offset + image_title_y))
-            (pos_x, pos_y) = screen_config.position(0.385, 0.465+(state - 1)*0.07)
-            screen.blit(image_ball, (pos_x, pos_y))
+            game_screen.screen_desktop.blit(image_title, (game_screen.x_offset + image_title_x, game_screen.y_offset + image_title_y))
+            (pos_x, pos_y) = game_screen.position_desktop(0.385, 0.465+(state - 1)*0.07)
+            game_screen.screen_desktop.blit(image_ball, (pos_x, pos_y))
             pygame.display.update()
             clock.tick(100)
